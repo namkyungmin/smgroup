@@ -1,0 +1,229 @@
+@charset "utf-8";
+
+/* 
+ * Nanum Gothic (Korean) http://www.google.com/webfonts/earlyaccess
+ */
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot);
+    src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+    url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff2) format('woff2'),
+    url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff) format('woff'),
+    url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum Gothic Bold';
+    font-style: normal;
+    font-weight: 600;
+    src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot);
+    src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
+    url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2) format('woff2'),
+    url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff) format('woff'),
+    url(http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf) format('truetype');
+}
+
+
+
+
+html {
+    overflow-y: scroll;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, form, fieldset, legend,
+input, button, select, textarea {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    font-size: 13px;
+    color: #666;
+    line-height: 24px;
+    font-family: Dotum, sans-serif;
+}
+
+a {
+    color: #656566;
+    text-decoration: none;
+    border: none;
+}
+
+fieldset, img {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+address {
+    font-style: normal;
+}
+
+.blind {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    line-height: 0;
+}
+#recruit {
+    position: relative;
+    width: 940px;
+    margin: 0 40px;
+    padding: 55px 0 0;
+    overflow: hidden;
+    font-family: 'Nanum Gothic';
+}
+
+@media print {
+	#recruit {
+	    width: 100%;
+		margin: 0;
+		padding: 55px 0 0;
+		overflow: hidden;
+	}
+}
+
+#recruit .section {
+    width: 100%;
+    padding: 0 0 56px;
+}
+
+#recruit .section h1 {
+    height: 47px;
+    font-size: 24px;
+    color: #333;
+    line-height: 30px;
+}
+
+#recruit .section h1 span {
+    margin: 0 0 0 8px;
+    font-size: 14px;
+    color: #005696;
+    font-weight: normal;
+}
+
+#recruit .section table {
+    width: 100%;
+    border-top: 1px solid #333;
+}
+
+#recruit .section table th {
+    padding: 8px 20px;
+    vertical-align: top;
+    text-align: left;
+    color: #333;
+    font-family: 'Nanum Gothic Bold';
+    border-bottom: 1px dotted #b2b2b2;
+    background: #f2f2f2;
+}
+
+#recruit .section table td {
+    padding: 8px 20px;
+    vertical-align: top;
+    border-bottom: 1px dotted #b2b2b2;
+}
+
+#recruit .section table .type1 {
+    border-bottom: 1px dotted black;
+}
+
+#recruit .section table .type2 {
+    padding: 8px 10px;
+    text-align: center;
+    border-right: 1px solid #a9a9a9;
+}
+
+#recruit .section table .type3 {
+    padding: 8px 0;
+}
+
+#recruit .section table .type4 {
+    padding: 8px 0;
+    border-bottom: 1px solid #b2b2b2;
+    background: none;
+}
+
+#recruit .section table .type4 .face {
+    position: relative;
+    width: 130px;
+    height: 170px;
+    margin: 0 auto;
+}
+
+#recruit .section table .type4 .face img {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 130px;
+    height: 170px;
+}
+
+#recruit .section table .type4 .face .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#recruit .section table .text1 {
+    margin: 0 0 0 40px;
+}
+
+#recruit .section table .text2 {
+    margin: 0 0 0 14px;
+}
+
+#recruit .section table .text3 {
+    margin: 0 0 0 58px;
+}
+
+#recruit .section table tr.last1 th,
+#recruit .section table tr.last1 td {
+    border-bottom: 1px solid #b2b2b2 !important;
+}
+
+#recruit .section table th.last1,
+#recruit .section table td.last1 {
+    border-right: none !important;
+}
+
+#recruit .section.career:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#recruit .section.career table {
+    float: left;
+    margin: 1px 0 0;
+    border-top: 1px solid #929292;
+}
+
+#recruit .section.career table .type4 {
+    border-bottom: 1px solid #929292;
+}
+
+#recruit .section.career table.first {
+    margin: 0;
+    border-top: 1px solid #333;
+}
+
+#recruit .section.career table tr.last1 th,
+#recruit .section.career table tr.last1 td {
+    border-bottom: 1px solid #929292 !important;
+}
+.verdict{
+	position: relative;
+	width: 940px;
+	margin: 0 40px;
+	padding: 55px 0 0;
+}
+
+

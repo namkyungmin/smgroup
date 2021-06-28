@@ -1,0 +1,175 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<%@ include file="/include/header.jsp" %>
+<meta name="keywords" content="SM그룹, SM그룹 사업분야, SM그룹 미디어·서비스, 미디어·서비스, 사업분야, SM미디어, SM 서비스, 에스엠 미디어, 에스엠 서비스, 에스엠그룹, 에스엠그룹 사업분야, 에스엠그룹 미디어·서비스">
+<meta name="description" content="SM그룹 사업분야 중 미디어·서비스부문 페이지 입니다. 다양한 미디어·서비스 관련 계열사를 소개합니다.">
+<title>미디어&middot;서비스 | SM그룹</title>
+</head>
+
+<body>
+    <div id="wrap" class="sub business media">
+        <%@ include file="/include/gnb.jsp" %>
+        <div id="container" class="type02">
+			<!-- s: title -->
+            <div class="page_tit">
+                <h2>
+                    <span>SM그룹은 첨단 IT 기술 개발과 신규 시장 개척 시장의 글로벌화</span>를 위한<br>
+                    끊임없는 노력으로 더 넓은 세상을 만들어갑니다.
+                </h2>
+            </div>
+            <!--// e: title -->
+            <div id="contents">
+                <div class="contents_top">
+					<!-- s: breadcrumb -->
+                    <ul class="breadcrumb">
+                        <li class="home">홈</li>
+                        <li class="depth1">사업분야</li>
+                        <li class="depth2">미디어·서비스</li>
+                    </ul>
+                    <!--// e: breadcrumb -->
+                    <div class="tab_wrap">
+                        <ul>
+                            <li>
+                                <a href="manufacturing.do">제조</a>
+                            </li>
+                            <li>
+                                <a href="construction.do">건설</a>
+                            </li>
+                            <li>
+                                <a href="shipping-industry.do">해운</a>
+                            </li>
+                            <li>
+                                <a href="media-service.do" class="on">미디어·서비스</a>
+                            </li>
+                            <li>
+                                <a href="reisure.do">레저</a>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+                <div class="cont_tit">
+                    <h3>미디어·서비스</h3>
+                    <p>세상을 더욱 넓게, 생활을 더욱 이롭게</p>
+                </div>
+                <div class="section">
+                    <!-- s: list -->
+                    <div class="thumb_list">
+                        <div class="board_list">
+                            <ul class="board">
+                                <li class="active">
+                                    <a href="http://web.ubc.co.kr/" target="_blank">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media01.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">SM울산방송</p>
+                                            <p class="tit">1997년 9월 1일 TV 방송 시작으로 울산, 양산, 경주 일부 지역을 가시청권 하여 5개 송신소와 중계소를 운영하며 보다 나은 시민의 삶의 향상을 위한 인간 중심의  방송사 입니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="http://www.hipluscard.co.kr/" target="_blank">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media02.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">SM하이플러스</p>
+                                            <p class="tit">고속도로 선불 하이패스 점유율 1위 업체로 효율적인 전자카드 서비스를 통하여 보다 편리하고 빠른 디지털 솔루션을 제공합니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="https://www.smcredit.co.kr/" target="_blank">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media03.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">SM신용정보</p>
+                                            <p class="tit">전국 27개의 네트워크를 구축하고 최고 수준의 채권추심 전문가를 통해 신속한 채권 회수를 제공하고 있습니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="http://www.cremorlab.co.kr" target="_blank">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media04.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">SM생명과학</p>
+                                            <p class="tit">크레모랩은 의학적 가치를 인정받은 금진온천수를 활용한 화장품, 생활용품, 의약외품과 메디컬 스파 컨셉의 힐링 리조트를 통한 의료관광서비스 등 다양한 헬스케어 사업을 추진하고 있습니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="no_link">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media05.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">코리코엔터프라이스</p>
+                                            <p class="tit">선용품 등 항만서비스 업체로서 부산 항만의 서비스 선진화에 기여하였으며 계속하여 고객 서비스에 최선을 다하고 있습니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="no_link">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media06.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">이코사주류</p>
+                                            <p class="tit">슈퍼, 편의점 같은 소매점포에 주류를 안정적으로 공급 및 재고 관리를 통한 유통시장에 새로운 대안을 제시하고 있습니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="http://www.barokosa.com/" target="_blank">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media07.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">㈜바로코사</p>
+                                            <p class="tit">슈퍼마켓 조합원 및 지역 조합의 지원과 경쟁력 있는 상품 공급과 정확하고 편안한 물류 서비스로 온-오프라인 전문 유통 업체입니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="javascript:void(0);" class="no_link">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media08.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">신촌역사</p>
+                                            <p class="tit">SM신촌역사는 대학가를 중심으로 국내외 관광객의 필수 여행 코스로 풍부한 볼거리, 먹거리, 즐길 거리 등으로 신촌의 새로운 랜드마크로 자리매김하기 위해 노력하고 있습니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="http://www.feelhp.com/" target="_blank">
+                                        <div class="thumb_area">
+                                            <img src="/resource/images/business/thumb_business_media09.jpg" alt="">
+                                        </div>
+                                        <div class="txt_area">
+                                            <p class="cate">SM필의료재단</p>
+                                            <p class="tit">보건복지부 지정 정신 의료기관으로 응급입원 및 행정 입원이 가능한 서울 강서·양천지역 중 유일한 정신건강의학과 입원병실을 갖춘 병원입니다.</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--// e: list -->
+                </div>
+                <%@ include file="/include/floating.jsp" %>
+            </div>
+        </div>
+        <%@ include file="/include/footer.jsp" %>
+	</div>
+	<%@ include file="/include/common.jsp" %>
+    <script>
+        smGroup.stickyGnb();
+    </script>
+</body>
+</html>

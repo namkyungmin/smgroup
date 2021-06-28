@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="company">
+	<resultMap id="contents" type="hashmap">
+		<result property="CONTENTS" column="CONTENTS" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="CONTENTS_MOBILE" column="CONTENTS_MOBILE" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	<select id="selectCompanyCount" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(*) as COUNT
+	        FROM
+	            TBL_COMPANY
+		    ]]>
+			<where>
+			    <if test="LANG != '' and LANG != null">
+					and LANG = '${LANG}'
+			    </if>
+			    <if test="STATUS != '' and STATUS != null">
+					and STATUS = '${STATUS}'
+			    </if>
+			    <if test="STATUS_ADDR != '' and STATUS_ADDR != null">
+					and STATUS_ADDR = '${STATUS_ADDR}'
+			    </if>
+			    <if test="STATUS_COMPANY != '' and STATUS_COMPANY != null">
+					and STATUS_COMPANY = '${STATUS_COMPANY}'
+			    </if>
+			    <if test="STATUS_EN != '' and STATUS_EN != null">
+					and STATUS_EN = '${STATUS_EN}'
+			    </if>
+			    <if test="STATUS_ADDR_EN != '' and STATUS_ADDR_EN != null">
+					and STATUS_ADDR_EN = '${STATUS_ADDR_EN}'
+			    </if>
+			    <if test="STATUS_COMPANY_EN != '' and STATUS_COMPANY_EN != null">
+					and STATUS_COMPANY_EN = '${STATUS_COMPANY_EN}'
+			    </if>
+			    <if test="PID != '' and PID != null">
+					and PARENT_IDX = '${PID}'
+			    </if>
+			    <if test="TYPES != '' and TYPES != null">
+					and SECTIONS = '${TYPES}'
+			    </if>
+			    <if test="MAINSTATUS != '' and MAINSTATUS != null">
+					and MAINSTATUS = '${MAINSTATUS}'
+			    </if>
+			    <if test="GUBUN != '' and GUBUN != null">
+					and GUBUN = #{GUBUN}
+			    </if>
+			    <if test="SECTION != '' and SECTION != null">
+					and SECTION = '${SECTION}'
+			    </if>
+			    <if test="sdate != '' and sdate != null">
+			    	<![CDATA[
+					and date_format(UPDA_DTM, '%Y-%m-%d') >= '${sdate}'
+					]]>
+			    </if>
+			    <if test="edate != '' and edate != null">
+			    	<![CDATA[
+					and date_format(UPDA_DTM, '%Y-%m-%d') <= '${edate}'
+					]]>
+			    </if>
+			    <if test="keyword != '' and keyword != null">
+					<choose>
+						<when test="target == 'all'">
+						and (TITLE like '%${keyword}%' OR CONTENTS like '%${keyword}%' OR SECTION like '%${keyword}%')
+						</when> 
+						<otherwise>
+						and ${target} like '%${keyword}%'
+						</otherwise>
+					</choose>
+			    </if>
+			</where>
+	</select>
+	
+	<select id="selectCompanyList" parameterType="hashmap" resultType="hashmap" resultMap="contents">
+	    <![CDATA[
+	            SELECT
+	                AA.*
+	                ,(SELECT count(*) FROM TBL_COMPANY_SUB WHERE AA.IDX=PARENT_IDX) CNT_SUB
+	    ]]>
+	    <![CDATA[
+					
+	            FROM(  
+			        SELECT
+			            A.IDX,
+		]]>
+		<choose>
+			<when test="FRONTCOL != '' and FRONTCOL != null">
+			<![CDATA[
+						${FRONTCOL}
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+					
+						A.SECTIONS,
+						A.NAME,
+						A.NAME_EN,
+						A.NAME_SUB,
+						A.NAME_SUB_EN,
+						A.URL,
+						A.URL_EN,
+						A.DESCRIPTION,
+						A.DESCRIPTION_EN,
+						A.PATH,
+						A.THUMB,
+						A.THUMB_EN,
+						A.ADDR,
+						A.ADDR_EN,
+						A.TEL,
+						A.TEL_EN,
+						A.LAT,
+						A.LNG,
+						A.STATUS,
+						A.STATUS_ADDR,
+						A.STATUS_EN,
+						A.STATUS_ADDR_EN,
+						A.STATUS_COMPANY,
+						A.STATUS_COMPANY_EN,
+						A.SORT,
+						A.CREA_ID,
+						A.CREA_NAME,
+						A.CREA_DTM,
+						DATE_FORMAT( A.UPDA_DTM, '%Y-%m-%d %H:%i:%S' ) AS UPDA_DTM
+						]]>
+					    <if test="SUBOOL==true">
+				    	<![CDATA[
+						,B.SUBIDX,
+						B.LOGO,
+						B.LOGO_EN,
+						B.LOGO_MO,
+						B.LOGO_EN_MO,
+						B.TOP_BODY,
+						B.TOP_BODY_MO,
+						B.TOP_BODY_EN,
+						B.TOP_BODY_EN_MO,
+						B.YEAR,
+						B.YEAR_EN,
+						B.BUSINESS,
+						B.BUSINESS_EN,
+						B.CEO,
+						B.CEO_EN,
+						B.TOP_ADDR,
+						B.TOP_ADDR_EN,
+						B.TOP_TEL,
+						B.TOP_TEL_EN,
+						B.HOMEPAGE,
+						B.HOMEPAGE_EN,
+						B.TITLE,
+						B.TITLE_EN,
+						B.CONTENT_IMGONE,
+						B.CONTENT_IMGONE_EN,
+						B.CONTENT_IMGTWO,
+						B.CONTENT_IMGTWO_EN,
+						B.CONTENT_TITLEONE,
+						B.CONTENT_TITLEONE_EN,
+						B.CONTENT_TITLETWO,
+						B.CONTENT_TITLETWO_EN,
+						B.CONTENT_BODYONE,
+						B.CONTENT_BODYONE_MO,
+						B.CONTENT_BODYONE_EN,
+						B.CONTENT_BODYONE_EN_MO,
+						B.CONTENT_BODYTWO,
+						B.CONTENT_BODYTWO_MO,
+						B.CONTENT_BODYTWO_EN,
+						B.CONTENT_BODYTWO_EN_MO,
+						B.STATUS_SUB,
+						B.STATUS_SUB_EN
+						]]>
+					    </if>
+					    <![CDATA[
+						]]>
+			</otherwise>
+		</choose>
+					<![CDATA[
+			        FROM
+			            TBL_COMPANY A
+
+					]]>
+				    <if test="SUBOOL==true">
+			    	<![CDATA[
+					LEFT JOIN TBL_COMPANY_SUB B ON A.IDX = B.PARENT_IDX
+					]]>
+				    </if>
+				    <![CDATA[
+		    		]]>
+					<where>
+					    <if test="LANG != '' and LANG != null">
+							and A.LANG = '${LANG}'
+					    </if>
+					    <if test="STATUS != '' and STATUS != null">
+							and A.STATUS = '${STATUS}'
+					    </if>
+					    <if test="STATUS_ADDR != '' and STATUS_ADDR != null">
+							and  A.STATUS_ADDR = '${STATUS_ADDR}'
+					    </if>
+					    <if test="STATUS_COMPANY != '' and STATUS_COMPANY != null">
+							and  A.STATUS_COMPANY = '${STATUS_COMPANY}'
+					    </if>
+					    <if test="STATUS_EN != '' and STATUS_EN != null">
+							and A.STATUS_EN = '${STATUS_EN}'
+					    </if>
+					    <if test="STATUS_ADDR_EN != '' and STATUS_ADDR_EN != null">
+							and  A.STATUS_ADDR_EN = '${STATUS_ADDR_EN}'
+					    </if>
+					    <if test="STATUS_COMPANY_EN != '' and STATUS_COMPANY_EN != null">
+							and  A.STATUS_COMPANY_EN = '${STATUS_COMPANY_EN}'
+					    </if>
+					    
+						<choose>
+							<when test="SECTIONS2 != '' and SECTIONS2 != null">
+							and (A.SECTIONS = '${SECTIONS}' OR A.SECTIONS = '${SECTIONS2}')
+							</when> 
+							<when test="SECTIONS != '' and SECTIONS != null">
+							and A.SECTIONS = '${SECTIONS}'
+							</when> 
+						</choose>
+					    <if test="NOTIDX != '' and NOTIDX != null">
+							and A.IDX != '${NOTIDX}'
+					    </if>
+					    <if test="sdate != '' and sdate != null">
+					    	<![CDATA[
+							and date_format(A.UPDA_DTM, '%Y-%m-%d') >= '${sdate}'
+							]]>
+					    </if>
+					    <if test="edate != '' and edate != null">
+					    	<![CDATA[
+							and date_format(A.UPDA_DTM, '%Y-%m-%d') <= '${edate}'
+							]]>
+					    </if>
+					    <if test="keyword != '' and keyword != null">
+							<choose>
+								<when test="target == 'all'">
+								and (A.NAME like '%${keyword}%' OR A.NAME_EN like '%${keyword}%' OR A.NAME_SUB like '%${keyword}%' OR A.NAME_SUB_EN like '%${keyword}%')
+								</when> 
+								<otherwise>
+								and ${target} like '%${keyword}%'
+								</otherwise>
+							</choose>
+					    </if>
+					</where>
+		<![CDATA[
+	            ) AA
+	    ]]>
+		<choose>
+			<when test="ORDERBY != '' and ORDERBY != null">
+			<![CDATA[
+			ORDER BY ${ORDERBY}
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+			ORDER BY IDX DESC
+			]]>
+			</otherwise>
+		</choose>
+	    
+	    	<if test="END != '' and END != null">
+				<![CDATA[
+			    LIMIT #{START} , #{END}
+			    ]]>
+	    	</if>
+	</select>
+	
+	<insert id="insertCompany" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+	    <![CDATA[
+	        
+	        INSERT INTO TBL_COMPANY
+	        (
+	            SECTIONS, 
+			    NAME,
+			    NAME_EN,
+	            NAME_SUB, 
+	            NAME_SUB_EN, 
+	            URL, 
+	            URL_EN, 
+	            DESCRIPTION, 
+	            DESCRIPTION_EN, 
+	            PATH, 
+	            THUMB, 
+	            THUMB_EN, 
+	            ADDR,
+	            ADDR_EN, 
+	            TEL,
+	            TEL_EN,
+			    LAT,
+	            LNG,
+	            STATUS,
+	            STATUS_EN,
+	            STATUS_ADDR,
+	            STATUS_ADDR_EN,
+	            STATUS_COMPANY,
+	            STATUS_COMPANY_EN,
+	            SORT,
+	            CREA_ID,
+	            CREA_NAME,
+	            UPDA_DTM
+	        )
+	        VALUES
+	        (
+	            #{SECTIONS}, 
+	            #{NAME}, 
+			    #{NAME_EN}, 
+	            #{NAME_SUB}, 
+	            #{NAME_SUB_EN}, 
+	            #{URL}, 
+	            #{URL_EN}, 
+	            #{DESCRIPTION}, 
+	            #{DESCRIPTION_EN}, 
+	            #{PATH}, 
+	            #{THUMB}, 
+	            #{THUMB_EN}, 
+	            #{ADDR},
+	            #{ADDR_EN}, 
+	            #{TEL}, 
+	            #{TEL_EN}, 
+			    #{LAT}, 
+	            #{LNG}, 
+	            #{STATUS}, 
+	            #{STATUS_EN}, 
+	            #{STATUS_ADDR}, 
+	            #{STATUS_ADDR_EN}, 
+	            #{STATUS_COMPANY}, 
+	            #{STATUS_COMPANY_EN}, 
+	            1, 
+	            #{CREA_ID}, 
+	            #{CREA_NAME}, 
+			]]>
+		<choose>
+			<when test="UPDA_DTM != '' and UPDA_DTM != null">
+			<![CDATA[
+			    		DATE_FORMAT(#{UPDA_DTM}, '%Y-%m-%d %H:%i:%S')
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+				now()
+			]]>
+			</otherwise>
+		</choose>
+		<![CDATA[
+	        )
+	    ]]>
+	</insert>
+	<update id="updateHitCnt" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_COMPANY 
+	        SET
+	            HIT_CNT = IFNULL(HIT_CNT, 0) + 1
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	 
+	<select id="selectCompanySubCount" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(*) as COUNT
+	        FROM
+	            TBL_COMPANY_SUB
+		    ]]>
+			<where>
+			    <if test="IDX != '' and IDX != null">
+					and PARENT_IDX = '${IDX}'
+			    </if>
+			</where>
+	</select>
+	<select id="selectCompanyDetail" parameterType="hashmap" resultType="hashmap" resultMap="contents">
+	    <![CDATA[
+	        SELECT
+	        	A.IDX,
+				A.SECTIONS,
+				A.NAME,
+				A.NAME_EN,
+				A.NAME_SUB,
+				A.NAME_SUB_EN,
+				A.URL,
+				A.URL_EN,
+				A.DESCRIPTION,
+				A.DESCRIPTION_EN,
+				A.PATH,
+				A.THUMB,
+				A.THUMB_EN,
+				A.ADDR,
+				A.ADDR_EN,
+				A.TEL,
+				A.TEL_EN,
+				A.LAT,
+				A.LNG,
+				A.STATUS,
+				A.STATUS_ADDR,
+				A.STATUS_EN,
+				A.STATUS_ADDR_EN,
+				A.STATUS_COMPANY,
+				A.STATUS_COMPANY_EN,
+				A.SORT,
+				A.CREA_ID,
+				A.CREA_NAME,
+				A.CREA_DTM,
+				DATE_FORMAT( A.UPDA_DTM, '%Y-%m-%d %H:%i:%S' ) AS UPDA_DTM
+				]]>
+			    <if test="SUBOOL==true">
+		    	<![CDATA[
+				,B.SUBIDX,
+				B.LOGO,
+				B.LOGO_EN,
+				B.LOGO_MO,
+				B.LOGO_EN_MO,
+				B.TOP_BODY,
+				B.TOP_BODY_MO,
+				B.TOP_BODY_EN,
+				B.TOP_BODY_EN_MO,
+				B.YEAR,
+				B.YEAR_EN,
+				B.BUSINESS,
+				B.BUSINESS_EN,
+				B.CEO,
+				B.CEO_EN,
+				B.TOP_ADDR,
+				B.TOP_ADDR_EN,
+				B.TOP_TEL,
+				B.TOP_TEL_EN,
+				B.HOMEPAGE,
+				B.HOMEPAGE_EN,
+				B.TITLE,
+				B.TITLE_EN,
+				B.CONTENT_IMGONE,
+				B.CONTENT_IMGONE_EN,
+				B.CONTENT_IMGTWO,
+				B.CONTENT_IMGTWO_EN,
+				B.CONTENT_TITLEONE,
+				B.CONTENT_TITLEONE_EN,
+				B.CONTENT_TITLETWO,
+				B.CONTENT_TITLETWO_EN,
+				B.CONTENT_BODYONE,
+				B.CONTENT_BODYONE_MO,
+				B.CONTENT_BODYONE_EN,
+				B.CONTENT_BODYONE_EN_MO,
+				B.CONTENT_BODYTWO,
+				B.CONTENT_BODYTWO_MO,
+				B.CONTENT_BODYTWO_EN,
+				B.CONTENT_BODYTWO_EN_MO,
+				B.STATUS_SUB,
+				B.STATUS_SUB_EN
+				]]>
+			    </if>
+			    <![CDATA[
+				]]>
+	        FROM
+	            TBL_COMPANY A
+		    <if test="SUBOOL==true">
+	    	<![CDATA[
+			LEFT JOIN TBL_COMPANY_SUB B ON A.IDX = B.PARENT_IDX
+			]]>
+		    </if>
+			<![CDATA[
+	        WHERE
+	            A.IDX = #{IDX}  
+	    	]]>
+	    <if test="STATUS != '' and STATUS != null">
+			and STATUS = '${STATUS}'
+	    </if>
+	</select>
+	
+	<update id="updateCompany" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_COMPANY 
+	        SET
+				SECTIONS= #{SECTIONS},
+				NAME= #{NAME},
+				NAME_EN= #{NAME_EN},
+				NAME_SUB= #{NAME_SUB},
+				NAME_SUB_EN= #{NAME_SUB_EN},
+				URL= #{URL},
+				URL_EN= #{URL_EN},
+				DESCRIPTION= #{DESCRIPTION},
+				DESCRIPTION_EN= #{DESCRIPTION_EN},
+				PATH= #{PATH},
+				]]>
+			    <if test="THUMB != '' and THUMB != null">
+			    <![CDATA[
+					THUMB= #{THUMB},
+				]]>
+			    </if>
+			    <![CDATA[
+				]]>
+			    <if test="THUMB_EN != '' and THUMB_EN != null">
+			    <![CDATA[
+					THUMB_EN= #{THUMB_EN},
+				]]>
+			    </if>
+			    <![CDATA[
+				ADDR= #{ADDR},
+				ADDR_EN= #{ADDR_EN},
+				TEL= #{TEL},
+				TEL_EN= #{TEL_EN},
+				LAT= #{LAT},
+				LNG= #{LNG},
+				STATUS= #{STATUS},
+				STATUS_EN= #{STATUS_EN},
+				STATUS_ADDR= #{STATUS_ADDR},
+				STATUS_ADDR_EN= #{STATUS_ADDR_EN},
+				STATUS_COMPANY= #{STATUS_COMPANY},
+				STATUS_COMPANY_EN= #{STATUS_COMPANY_EN},
+			    UPDA_DTM = now()
+	            
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	
+	
+	<insert id="insertCompanySub" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+	    <![CDATA[
+	        
+	        INSERT INTO TBL_COMPANY_SUB
+	        (
+				PARENT_IDX,
+				LOGO,
+				LOGO_EN,
+				LOGO_MO,
+				LOGO_EN_MO,
+				TOP_BODY,
+				TOP_BODY_MO,
+				TOP_BODY_EN,
+				TOP_BODY_EN_MO,
+				YEAR,
+				YEAR_EN,
+				BUSINESS,
+				BUSINESS_EN,
+				CEO,
+				CEO_EN,
+				TOP_ADDR,
+				TOP_ADDR_EN,
+				TOP_TEL,
+				TOP_TEL_EN,
+				HOMEPAGE,
+				HOMEPAGE_EN,
+				TITLE,
+				TITLE_EN,
+				CONTENT_IMGONE,
+				CONTENT_IMGONE_EN,
+				CONTENT_IMGTWO,
+				CONTENT_IMGTWO_EN,
+				CONTENT_TITLEONE,
+				CONTENT_TITLEONE_EN,
+				CONTENT_TITLETWO,
+				CONTENT_TITLETWO_EN,
+				CONTENT_BODYONE,
+				CONTENT_BODYONE_MO,
+				CONTENT_BODYONE_EN,
+				CONTENT_BODYONE_EN_MO,
+				CONTENT_BODYTWO,
+				CONTENT_BODYTWO_MO,
+				CONTENT_BODYTWO_EN,
+				CONTENT_BODYTWO_EN_MO,
+				STATUS_SUB,
+				STATUS_SUB_EN,
+				UPDA_DTM
+	        )
+	        VALUES
+	        (
+				 #{IDX},
+				 #{LOGO},
+				 #{LOGO_EN},
+				 #{LOGO_MO},
+				 #{LOGO_EN_MO},
+				 #{TOP_BODY},
+				 #{TOP_BODY_MO},
+				 #{TOP_BODY_EN},
+				 #{TOP_BODY_EN_MO},
+				 #{YEAR},
+				 #{YEAR_EN},
+				 #{BUSINESS},
+				 #{BUSINESS_EN},
+				 #{CEO},
+				 #{CEO_EN},
+				 #{TOP_ADDR},
+				 #{TOP_ADDR_EN},
+				 #{TOP_TEL},
+				 #{TOP_TEL_EN},
+				 #{HOMEPAGE},
+				 #{HOMEPAGE_EN},
+				 #{TITLE},
+				 #{TITLE_EN},
+				 #{CONTENT_IMGONE},
+				 #{CONTENT_IMGONE_EN},
+				 #{CONTENT_IMGTWO},
+				 #{CONTENT_IMGTWO_EN},
+				 #{CONTENT_TITLEONE},
+				 #{CONTENT_TITLEONE_EN},
+				 #{CONTENT_TITLETWO},
+				 #{CONTENT_TITLETWO_EN},
+				 #{CONTENT_BODYONE},
+				 #{CONTENT_BODYONE_MO},
+				 #{CONTENT_BODYONE_EN},
+				 #{CONTENT_BODYONE_EN_MO},
+				 #{CONTENT_BODYTWO},
+				 #{CONTENT_BODYTWO_MO},
+				 #{CONTENT_BODYTWO_EN},
+				 #{CONTENT_BODYTWO_EN_MO},
+				 #{STATUS_SUB},
+				 #{STATUS_SUB_EN},
+			]]>
+		<choose>
+			<when test="UPDA_DTM != '' and UPDA_DTM != null">
+			<![CDATA[
+			    		DATE_FORMAT(#{UPDA_DTM}, '%Y-%m-%d %H:%i:%S')
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+				now()
+			]]>
+			</otherwise>
+		</choose>
+		<![CDATA[
+	        )
+	    ]]>
+	</insert>
+	
+	<update id="updateCompanySub" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_COMPANY_SUB
+	        SET
+				]]>
+			    <if test="LOGO != '' and LOGO != null">
+			    <![CDATA[
+					LOGO = #{LOGO},
+				]]>
+			    </if>
+			    <if test="LOGO_EN != '' and LOGO_EN != null">
+			    <![CDATA[
+					LOGO_EN = #{LOGO_EN},
+				]]>
+			    </if>
+			    <if test="LOGO_MO != '' and LOGO_MO != null">
+			    <![CDATA[
+					LOGO_MO = #{LOGO_MO},
+				]]>
+			    </if>
+			    <if test="LOGO_EN_MO != '' and LOGO_EN_MO != null">
+			    <![CDATA[
+					LOGO_EN_MO = #{LOGO_EN_MO},
+				]]>
+			    </if>
+			    <![CDATA[
+				
+				
+				TOP_BODY = #{TOP_BODY},
+				TOP_BODY_MO = #{TOP_BODY_MO},
+				TOP_BODY_EN = #{TOP_BODY_EN},
+				TOP_BODY_EN_MO = #{TOP_BODY_EN_MO},
+				YEAR = #{YEAR},
+				YEAR_EN = #{YEAR_EN},
+				BUSINESS = #{BUSINESS},
+				BUSINESS_EN = #{BUSINESS_EN},
+				CEO = #{CEO},
+				CEO_EN = #{CEO_EN},
+				TOP_ADDR = #{TOP_ADDR},
+				TOP_ADDR_EN = #{TOP_ADDR_EN},
+				TOP_TEL = #{TOP_TEL},
+				TOP_TEL_EN = #{TOP_TEL_EN},
+				HOMEPAGE = #{HOMEPAGE},
+				HOMEPAGE_EN = #{HOMEPAGE_EN},
+				TITLE = #{TITLE},
+				TITLE_EN = #{TITLE_EN},
+				]]>
+			    <if test="CONTENT_IMGONE != '' and CONTENT_IMGONE != null">
+			    <![CDATA[
+					CONTENT_IMGONE = #{CONTENT_IMGONE},
+				]]>
+			    </if>
+			    <if test="CONTENT_IMGONE_EN != '' and CONTENT_IMGONE_EN != null">
+			    <![CDATA[
+					CONTENT_IMGONE_EN = #{CONTENT_IMGONE_EN},
+				]]>
+			    </if>
+			    <if test="CONTENT_IMGTWO != '' and CONTENT_IMGTWO != null">
+			    <![CDATA[
+					CONTENT_IMGTWO = #{CONTENT_IMGTWO},
+				]]>
+			    </if>
+			    <if test="CONTENT_IMGTWO_EN != '' and CONTENT_IMGTWO_EN != null">
+			    <![CDATA[
+					CONTENT_IMGTWO_EN = #{CONTENT_IMGTWO_EN},
+				]]>
+			    </if>
+			    <![CDATA[
+				CONTENT_TITLEONE = #{CONTENT_TITLEONE},
+				CONTENT_TITLEONE_EN = #{CONTENT_TITLEONE_EN},
+				CONTENT_TITLETWO = #{CONTENT_TITLETWO},
+				CONTENT_TITLETWO_EN = #{CONTENT_TITLETWO_EN},
+				CONTENT_BODYONE = #{CONTENT_BODYONE},
+				CONTENT_BODYONE_MO = #{CONTENT_BODYONE_MO},
+				CONTENT_BODYONE_EN = #{CONTENT_BODYONE_EN},
+				CONTENT_BODYONE_EN_MO = #{CONTENT_BODYONE_EN_MO},
+				CONTENT_BODYTWO = #{CONTENT_BODYTWO},
+				CONTENT_BODYTWO_MO = #{CONTENT_BODYTWO_MO},
+				CONTENT_BODYTWO_EN = #{CONTENT_BODYTWO_EN},
+				CONTENT_BODYTWO_EN_MO = #{CONTENT_BODYTWO_EN_MO},
+				STATUS_SUB = #{STATUS_SUB},
+				STATUS_SUB_EN = #{STATUS_SUB_EN},
+				UPDA_DTM = now()
+	        WHERE
+	            SUBIDX = #{SUBIDX}    
+	    ]]>
+	</update>
+	<select id="selectCompanyContents" parameterType="hashmap" resultType="hashmap" resultMap="contents">
+	    <![CDATA[
+	        SELECT
+				*
+	        FROM
+	            TBL_COMPANY_CONTENTS
+		    ]]>
+			<where>
+			    <if test="IDX != '' and IDX != null">
+					and PARENT_IDX = '${IDX}'
+			    </if>
+			    <if test="LANG != '' and LANG != null">
+					and LANG = '${LANG}'
+			    </if>
+			</where>
+	</select>
+	<select id="selectCompanyContentsCount" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(*) as COUNT
+	        FROM
+	            TBL_COMPANY_CONTENTS
+		    ]]>
+			<where>
+			    <if test="IDX != '' and IDX != null">
+					and PARENT_IDX = '${IDX}'
+			    </if>
+			    <if test="LANG != '' and LANG != null">
+					and LANG = '${LANG}'
+			    </if>
+			</where>
+	</select>
+	
+	<insert id="insertCompanyContents" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+	    <![CDATA[
+	        
+	        INSERT INTO TBL_COMPANY_CONTENTS
+	        (
+				PARENT_IDX,
+				LANG,
+				CON_IMAGE,
+				CON_IMAGE_MO,
+				CON_TITLE,
+				CON_BODY,
+				CON_SORT,
+				UPDA_DTM
+	        )
+	        VALUES
+	        (
+				#{IDX},
+				#{LANG},
+				#{CON_IMAGE},
+				#{CON_IMAGE_MO},
+				#{CON_TITLE},
+				#{CON_BODY},
+				#{CON_SORT},
+				now()
+			]]>
+		<![CDATA[
+	        )
+	    ]]>
+	</insert>
+	
+	<update id="updateCompanyContents" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_COMPANY_CONTENTS
+	        SET
+				]]>
+			    <if test="CON_IMAGE != '' and CON_IMAGE != null">
+			    <![CDATA[
+					CON_IMAGE = #{CON_IMAGE},
+				]]>
+			    </if>
+			    <if test="CON_IMAGE_MO != '' and CON_IMAGE_MO != null">
+			    <![CDATA[
+					CON_IMAGE_MO = #{CON_IMAGE_MO},
+				]]>
+			    </if>
+			    <![CDATA[
+				
+				
+				CON_TITLE = #{CON_TITLE},
+				CON_BODY = #{CON_BODY},
+				CON_SORT = #{CON_SORT},
+				UPDA_DTM = now()
+	        WHERE
+	            CONIDX = #{CONIDX}    
+	    ]]>
+	</update>
+	
+	<update id="deleteCompanyContents" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_COMPANY_CONTENTS
+	        WHERE
+	            PARENT_IDX = #{IDX}    
+	    ]]>
+	</update>
+	<update id="deleteCompany" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_COMPANY_CONTENTS WHERE PARENT_IDX = #{IDX};
+	        DELETE FROM TBL_COMPANY_SUB WHERE PARENT_IDX = #{IDX};
+	        DELETE FROM TBL_COMPANY WHERE IDX = #{IDX};
+	    ]]>
+	</update>
+	
+	<update id="updateSort" parameterType="hashmap">
+	<![CDATA[
+	        UPDATE TBL_COMPANY 
+	        SET
+	            SORT = #{SORT}
+	        WHERE
+	            IDX = #{IDX}
+	]]>    
+	</update>
+</mapper>

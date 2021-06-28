@@ -1,0 +1,261 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="ct" uri="/WEB-INF/tlds/common.tld"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%@ include file="/include/eng/header.jsp" %>
+<meta name="description" content="This page is about the SM Group sitemap.">
+<title>Site Map | SM Group</title>
+</head>
+
+<body>
+    <div id="wrap" class="sub etc sitemap">
+        <%@ include file="/include/eng/gnb.jsp" %>
+        <div id="container">
+			<!-- s: title -->
+            <div class="page_tit">
+                <h2>Site Map</h2>
+            </div>
+            <!--// e: title -->
+            <div id="contents">
+                <div class="section">
+                    <div class="cont_tit">
+                        <h3>Browse all services available from the <span>SM Group</span></h3>
+                    </div>
+                    <ul class="sitemap_table">
+                        <li>
+                            <p class="tit">SM Group</p>
+                            <ul class="depth2_wrap">
+                                <li class="depth2">
+                                    <a href="/eng/company/overview.do">About Us</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/company/ceo.do">CEO Greetings</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/company/history.do">History</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/company/ci.do">CI</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="tit">Business</p>
+                            <ul class="depth2_wrap business">
+                                <li class="depth2">
+                                    <a href="/eng/business/manufacturing.do">Manufacturing</a>
+                                    <ul class="depth3_wrap">
+                                        <li class="depth3">
+                                            <a>TK CHEMICAL</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>NAMSUN ALUMINUM</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>NAMSUN ALUMINUM | AUTOMOTIVE PARTS</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>BEXEL</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>HWAJIN</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM STEEL</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM INDUSTRY</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM HEAVY INDUSTRIES | MANUFACTURE</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>HANDUK IRON MINE &amp; CONSTRUCTION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>E&amp;H</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/business/construction.do">Construction</a>
+                                    <ul class="depth3_wrap">
+										<li class="depth3">
+                                            <a>SAMRA</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>KEANGNAM ENTERPRISES</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>DONGAH CONSTRUCTION INDUSTRIAL</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SAMWHAN CORPORATION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>WOOBANG</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>WOOBANG INDUSTRIAL</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>TK CHEMICAL | CONSTRUCTION SECTION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM LINE | CONSTRUCTION SECTION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>TAEKIL CONSTRUCTION</a>
+                                        </li>
+                                        <li class="depth3 category">
+                                            SM Group's construction brand
+                                        </li>
+                                        <li class="depth3">
+                                            <a>KEANGNAM HONORSVILE</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>WOOBANG IUSHELL</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/business/shipping-industry.do">Shipping Industry</a>
+                                    <ul class="depth3_wrap">
+                                        <li class="depth3">
+                                            <a>KOREA LINE CORPORATION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>KOREA SHIPPING CORPORATION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM LINE CORPORATION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>KLCSM</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM LINE GYEONGIN TERMINAL</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>KOLICO</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>KOMARF</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="depth2_wrap business">
+                                <li class="depth2">
+                                    <a href="/eng/business/media-service.do">Media&middot;Service</a>
+                                    <ul class="depth3_wrap">
+                                        <li class="depth3">
+                                            <a>ULSAN BROADCASTING CORPORATION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM HIPLUS</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SM CREDIT INFORMATION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SAMWHAN CORPORATION COSMETIC SECTION</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>E-KOSA</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>BAROKOSA</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>SINCHON STATION</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/business/leisure.do">Leisure</a>
+                                    <ul class="depth3_wrap">
+                                        <li class="depth3">
+                                            <a>HOTEL TOPS 10</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>TOPS 10 RESORT DONGGANG CISTAR</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>TOPS 10 VILLA DE AEWOL JEJU</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>TOPS 10 OXFIELD C.C</a>
+                                        </li>
+                                        <li class="depth3">
+                                            <a>TOPS 10 APPLE VALLEY C.C</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sustainable">
+                            <p class="tit">Sustainable Management</p>
+                            <ul class="depth2_wrap">
+                                <li class="depth2">
+                                    <a href="/eng/sustainability/index.do">Sustainable Management</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/sustainability/ethics/list.do">Ethical Management</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/sustainability/partnership/list.do">Mutual Growth Management</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/sustainability/environment/list.do">Environmental Management</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/sustainability/social-contribution/list.do">Social Contribution</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="tit">Recruitment</p>
+                            <ul class="depth2_wrap">
+                                <li class="depth2">
+                                    <a href="/eng/recruit/sm-resource.do">Desired Talents</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p class="tit">Additional Information</p>
+                            <ul class="depth2_wrap">
+                                <li class="depth2">
+                                    <a href="/eng/etc/legal.do">Legal Notice</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/etc/terms-of-use.do">Terms of Use</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/etc/location.do">Directions</a>
+                                </li>
+                                <li class="depth2">
+                                    <a href="/eng/etc/sitemap.do">Site Map</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul> 
+                </div>
+                <%@ include file="/include/eng/floating.jsp" %>
+            </div>
+        </div>
+        <%@ include file="/include/eng/footer.jsp" %>
+	</div>
+	<%@ include file="/include/eng/common.jsp" %>
+    <script>
+        smGroup.stickyGnb();
+        smGroup.headerOn();
+    </script>
+</body>
+</html>

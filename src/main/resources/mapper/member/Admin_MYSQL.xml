@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMember">
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            NAME,
+	            EMAIL,
+	            STATUS,
+	            DEPARTMENT,
+	            GRANTS,
+	            MENUS,
+	            CREA_DTM,
+	            LOGIN_DTM
+	        FROM
+	            TBL_ADMIN, (SELECT @ROWNUM:=0) R
+		    ]]>
+			<where>
+		    	<if test="STATUS != '' and STATUS != null">
+		    	<![CDATA[
+		    		STATUS = #{STATUS},
+		    	]]>
+		    	</if>
+			    <if test="keyword != '' and keyword != null">
+					<choose>
+						<when test="target == 'all'">
+						and (NAME like '%${keyword}%' OR EMAIL like '%${keyword}%')
+						</when> 
+						<otherwise>
+						and ${target} like '%${keyword}%'
+						</otherwise>
+					</choose>
+			    </if>
+			</where>
+		<![CDATA[
+		ORDER BY CREA_DTM DESC
+	    ]]>
+    	<if test="END != '' and END != null">
+    	<![CDATA[
+    		LIMIT #{START}, #{END}
+    	]]>
+    	</if>
+	</select>
+	<insert id="insertMember" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+	   <!--  <selectKey keyProperty="IDX" resultType="string" order="BEFORE">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey> -->
+	    <![CDATA[
+	        
+	        INSERT INTO TBL_ADMIN
+	        (
+	            NAME, 
+	            EMAIL, 
+	            PASSWD, 
+	            STATUS, 
+	            DEPARTMENT, 
+	            GRANTS, 
+	            MENUS, 
+	            CREA_DTM, 
+	            LOGIN_DTM
+	        )
+	        VALUES
+	        (
+	            #{NAME}, 
+	            #{EMAIL}, 
+	            #{PASSWD},
+	            'Y', 
+	            #{DEPARTMENT},
+	            #{GRANTS},
+	            #{MENUS},
+	            now(), 
+	            now()
+	        )
+	    ]]>
+	</insert>
+	 
+	<select id="selectMemberDetail" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            NAME,
+	            EMAIL,
+	            STATUS,
+	            DEPARTMENT,
+	            GRANTS,
+	            MENUS,
+	            CREA_DTM,
+	            LOGIN_DTM
+	        FROM
+	            TBL_ADMIN
+	        WHERE
+	            IDX = #{IDX}        
+	    ]]>
+	</select>
+	
+	<select id="emailSearch" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            COUNT(EMAIL) as COUNT
+	        FROM
+	            TBL_ADMIN
+	        WHERE
+	            EMAIL = #{EMAIL}        
+	    ]]>
+	</select>
+	<select id="login" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            EMAIL,
+	            NAME,
+	            PASSWD,
+	            DEPARTMENT,
+	            GRANTS,
+	            MENUS, 
+	            STATUS, 
+	            CREA_DTM, 
+	            LOGIN_DTM
+	        FROM
+	            TBL_ADMIN
+	        WHERE
+	            EMAIL = #{EMAIL}        
+	    ]]>
+	</select>
+	
+	<update id="updateMember" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_ADMIN 
+	        SET
+	            NAME = #{NAME},
+	            DEPARTMENT = #{DEPARTMENT}
+
+			    ]]>
+		    	<if test="STATUS != '' and STATUS != null">
+		    	<![CDATA[
+		    		,STATUS = #{STATUS}
+		    	]]>
+		    	</if>
+		    	<if test="MENUS != '' and MENUS != null">
+		    	<![CDATA[
+		    		,MENUS = #{MENUS}
+		    	]]>
+		    	</if>
+		    	<if test="GRANTS != '' and GRANTS != null">
+		    	<![CDATA[
+		    		,GRANTS = #{GRANTS}
+		    	]]>
+		    	</if>
+		    	<if test="PASSWD != '' and PASSWD != null">
+		    	<![CDATA[
+		    		,PASSWD = #{PASSWD}
+		    	]]>
+		    	</if>
+	            <![CDATA[
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	<update id="updateLogin" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_ADMIN 
+	        SET
+	        	LOGIN_CNT = LOGIN_CNT + 1,
+	            LOGIN_DTM = now()
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	<update id="deleteMember" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_ADMIN
+	        WHERE
+	            IDX = #{IDX}
+	    ]]>
+	</update>
+	
+	
+	
+	
+	<insert id="insertIP" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+	    <![CDATA[
+	        
+	        INSERT INTO TBL_ADMIN_IP
+	        (
+	            IDX,
+	            IP, 
+	            DESCRIPTION, 
+	            CREA_DTM, 
+	            UPDA_DTM
+	        )
+	        VALUES
+	        (
+	            #{IDX}, 
+	            #{IP}, 
+	            #{DESCRIPTION},
+	            now(), 
+	            now()
+	        )
+	    ]]>
+	</insert>
+	 
+	<select id="selectIPSearch" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(IP) as COUNT
+	        FROM
+	            TBL_ADMIN_IP
+	        WHERE
+	            IP = #{IP}        
+	    ]]>
+	</select>
+	
+	<select id="selectIP" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            IP,
+	            DESCRIPTION
+	        FROM
+	            TBL_ADMIN_IP
+	        ORDER BY IDX ASC   
+	    ]]>
+	</select>
+	
+	<update id="updateIP" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_ADMIN_IP
+	        SET
+	            IP = #{IP},
+	            DESCRIPTION = #{DESCRIPTION},
+	            UPDA_DTM = now()
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	<update id="deleteIP" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_ADMIN_IP
+	        WHERE
+	            IDX = #{IDX}
+	    ]]>
+	</update>
+	
+</mapper>

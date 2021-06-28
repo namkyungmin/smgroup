@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       					http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+       					http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    
+    <context:property-placeholder location="classpath*:config/properties/system.properties,classpath*:config/properties/jdbc.properties" />
+    <context:component-scan base-package="com.smgroup.web">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<util:properties id="sysinfo" location="classpath*:config/properties/system.properties"/>
+	<util:properties id="dbinfo" location="classpath*:config/properties/jdbc.properties"/>
+
+	<!-- MultipartResolver 설정 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="${sys.upload.maxUploadSize}" />
+        <property name="maxInMemorySize" value="${sys.upload.maxInMemorySize}" />
+    </bean>
+    
+    <!-- 전자정부 페이징 설정 -->
+    <bean id="imageRenderer" class="com.smgroup.web.common.ImagePaginationRenderer"/>
+    <bean id="frontRenderer" class="com.smgroup.web.common.FrontPaginationRenderer"/>
+    <bean id="commentRenderer" class="com.smgroup.web.common.FrontPaginationRenderer"/>
+    <bean id="textRenderer" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer"/>   
+    <bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+        <property name="rendererType">
+            <map>
+            	<entry key="image" value-ref="imageRenderer"/>
+            	<entry key="front" value-ref="frontRenderer"/>
+            	<entry key="comment" value-ref="commentRenderer"/>
+                <entry key="text" value-ref="textRenderer"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"/>
+		<!-- <property name="contentType" value="text/html;charset=UTF-8"/> -->
+	</bean>
+	<bean name="cgr/egovCategoryList"
+	  class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+
+
+	<!-- mail bean -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  <property name="host" value="${sys.mail.host}"/>
+	  <property name="port" value="${sys.mail.port}"/>
+	  <property name="username" value="${sys.mail.username}"/>
+	  <property name="password" value="${sys.mail.password}"/>
+	  <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.auth">true</prop>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	      <prop key="mail.smtp.timeout">8500</prop>
+	      <prop key="mail.debug">true</prop>
+	    </props>
+	  </property>
+	</bean>
+
+</beans>

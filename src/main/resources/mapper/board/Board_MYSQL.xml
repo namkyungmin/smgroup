@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<resultMap id="contents" type="hashmap">
+		<result property="CONTENTS" column="CONTENTS" jdbcType="CLOB" javaType="java.lang.String" />
+		<result property="CONTENTS_MOBILE" column="CONTENTS_MOBILE" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	<select id="selectBoardShortCategory" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            DESCRIPTION,
+	            MAIN
+	        FROM
+	            TBL_BOARD_CATE
+	        WHERE
+				1=1 
+			ORDER BY CREA_DTM DESC
+	    ]]>
+	</select>
+	<select id="selectBoardCategory" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            IDX,
+	            SLUG,
+	            DESCRIPTION,
+	            CODE,
+	            TYPES,
+	            MAIN,
+	            TAG,
+	            TAG_DEFAULT,
+	            HTML,
+	            COUNT,
+	            IMAGES,
+	            CREA_DTM
+	        FROM
+	            TBL_BOARD_CATE
+	        WHERE
+				1=1 
+			ORDER BY IDX ASC
+	    ]]>
+	</select>
+	<select id="selectBoardCateCntSlug" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(SLUG) as COUNT
+	        FROM
+	            TBL_BOARD_CATE
+	        WHERE
+	            SLUG = #{SLUG}        
+	    ]]>
+	</select>
+	<select id="selectBoardCategorySlug" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            IDX AS PID
+	        FROM
+	            TBL_BOARD_CATE
+	        WHERE
+	            SLUG = #{SLUG}        
+	    ]]>
+	</select>
+	<select id="selectBoardCategoryIpSlug" parameterType="int" resultType="String">
+	    <![CDATA[
+	        SELECT
+	            SLUG
+	        FROM
+	            TBL_BOARD_CATE
+	        WHERE
+	            IDX = #{PID}        
+	    ]]>
+	</select>
+	<select id="selectBoardCategoryDetail" parameterType="hashmap" resultType="hashmap">
+	    <![CDATA[
+	        SELECT
+	            SLUG,
+	            DESCRIPTION,
+	            CODE,
+	            TYPES,
+	            MAIN,
+	            TAG,
+	            TAG_DEFAULT,
+	            HTML,
+	            COUNT,
+	            IMAGES
+	        FROM
+	            TBL_BOARD_CATE
+	        WHERE
+	            IDX = #{PID}        
+	    ]]>
+	</select>
+	
+	<insert id="insertCategory" parameterType="hashmap">
+	    <![CDATA[
+	        INSERT INTO TBL_BOARD_CATE
+	        (
+	            SLUG,
+	            DESCRIPTION,
+	            CODE,
+	            TYPES,
+	            MAIN,
+	            HTML,
+	            COUNT,
+	            IMAGES,
+	            CREA_DTM,
+	            UPDA_DTM
+	        )
+	        VALUES
+	        (
+	            #{SLUG},
+	            #{DESCRIPTION},
+	            #{CODE},
+	            #{TYPES},
+	            #{MAIN},
+	            #{HTML},
+	            #{COUNT},
+	            #{IMAGES},
+	            now(),
+	            now()
+	        )
+	    ]]>
+	</insert>
+	<update id="updateCategory" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_BOARD_CATE SET
+	            SLUG = #{SLUG},
+	            DESCRIPTION = #{DESCRIPTION},
+	            CODE = #{CODE},
+    				TYPES = #{TYPES},
+    				MAIN = #{MAIN},
+    				HTML = #{HTML},
+    				COUNT = #{COUNT},
+    				IMAGES = #{IMAGES},
+	            UPDA_DTM = now()
+	        WHERE
+	            IDX = #{IDX}   
+	    ]]>
+	</update>
+	<update id="deleteCategory" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_BOARD_CATE
+	        WHERE
+	            IDX = #{IDX}  
+	    ]]>
+	</update>
+	
+	<select id="selectBoardCount" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(*) as COUNT
+	        FROM
+	            TBL_BOARD
+		    ]]>
+			<where>
+			    <if test="LANG != '' and LANG != null">
+					and LANG = '${LANG}'
+			    </if>
+			    <if test="STATUS != '' and STATUS != null">
+					and STATUS = '${STATUS}'
+			    </if>
+			    <if test="PID != '' and PID != null">
+					and PARENT_IDX = '${PID}'
+			    </if>
+			    <if test="TYPES != '' and TYPES != null">
+					and GUBUN = '${TYPES}'
+			    </if>
+			    <if test="TYPESARRAY != '' and TYPESARRAY != null">
+					and GUBUN IN
+				    <foreach item="item" collection="TYPESARRAY" index="index" open="(" separator="," close=")">
+				        #{item}
+				    </foreach>
+			    </if>
+			    <if test="TAGS != '' and TAGS != null">
+					and 
+				    <foreach item="item" collection="TAGS" index="index" open="(" separator="OR" close=")">
+				        TAGS like '%${item}%'
+				    </foreach>
+			    </if>
+			    <if test="SLUG != '' and SLUG != null">
+					and SLUG = '${SLUG}'
+			    </if>
+			    <if test="RECOM != '' and RECOM != null">
+					and RECOM = '${RECOM}'
+			    </if>
+			    <if test="MAINSTATUS != '' and MAINSTATUS != null">
+					and MAINSTATUS = '${MAINSTATUS}'
+			    </if>
+			    <if test="GUBUN != '' and GUBUN != null">
+					and GUBUN = #{GUBUN}
+			    </if>
+			    <if test="SECTION != '' and SECTION != null">
+					and SECTION = '${SECTION}'
+			    </if>
+			    <if test="sdate != '' and sdate != null">
+			    	<![CDATA[
+					and date_format(UPDA_DTM, '%Y-%m-%d') >= '${sdate}'
+					]]>
+			    </if>
+			    <if test="edate != '' and edate != null">
+			    	<![CDATA[
+					and date_format(UPDA_DTM, '%Y-%m-%d') <= '${edate}'
+					]]>
+			    </if>
+			    <if test="keyword != '' and keyword != null">
+					<choose>
+						<when test="target == 'all'">
+						and (TITLE like '%${keyword}%' OR CONTENTS like '%${keyword}%' OR SECTION like '%${keyword}%')
+						</when> 
+						<otherwise>
+						and ${target} like '%${keyword}%'
+						</otherwise>
+					</choose>
+			    </if>
+			</where>
+	</select>
+	
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap" resultMap="contents">
+	    <![CDATA[
+	            SELECT
+	                AA.*,
+	    ]]>
+	    <choose>
+	    <when test="CODE == 'slide-contents'">
+				    <choose>
+				    <when test="IMAGES == 'GALLERY'">
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'gallery' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobgallery' LIMIT 1)  AS MOBIMG_NAME,
+					</when>
+					<otherwise>
+
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'slide' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobslide' LIMIT 1)  AS MOBIMG_NAME,
+					</otherwise>
+					</choose>
+	    </when>
+	    <when test="COLFILETYPE == 'file'">
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'thumb' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobthumb' LIMIT 1)  AS MOBIMG_NAME,
+					( SELECT IDX FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'file' LIMIT 1)  AS FILE_NAME,
+					( SELECT IDX FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobfile' LIMIT 1)  AS MOBFILE_NAME,
+	    </when>
+	    
+	    <otherwise>
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'thumb' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobthumb' LIMIT 1)  AS MOBIMG_NAME,
+	    </otherwise>
+	    </choose>
+	    <![CDATA[
+					(SELECT COUNT(IDX) FROM TBL_BOARD_FILE WHERE BOARD_IDX=AA.IDX AND DEL_GB='N') AS FILE_COUNT
+	            FROM(  
+			        SELECT
+			            IDX,
+		]]>
+		<choose>
+			<when test="FRONTCOL != '' and FRONTCOL != null">
+			<![CDATA[
+						${FRONTCOL}
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+						PARENT_IDX,
+			            SLUG,
+			            LANG,
+			            SECTION,
+			            GUBUN,
+			            TITLE,
+			            TITLE_SUB,
+			            CONTENTS,
+			            CONTENTS_MOBILE,
+			            HIT_CNT,
+			            TAGS,
+			            STATUS,
+			            MAINSTATUS,
+			            MAINSORT,
+			            DATE_FORMAT(START_DTM, '%Y-%m-%d %H:%i:%S') AS START_DTM,
+			            DATE_FORMAT(END_DTM, '%Y-%m-%d %H:%i:%S') AS END_DTM,
+			            VIDEO,
+			            SORT,
+			            RECOM,
+			            CREA_ID,
+			            CREA_NAME,
+			            DATE_FORMAT(CREA_DTM, '%Y-%m-%d %H:%i:%S') AS CREA_DTM,
+			            DATE_FORMAT(UPDA_DTM, '%Y-%m-%d %H:%i:%S') AS UPDA_DTM
+			]]>
+			</otherwise>
+		</choose>
+		<![CDATA[
+			        FROM
+			            TBL_BOARD
+		    ]]>
+					<where>
+					    <if test="LANG != '' and LANG != null">
+							and LANG = '${LANG}'
+					    </if>
+					    <if test="STATUS != '' and STATUS != null">
+							and STATUS = '${STATUS}'
+					    </if>
+					    <if test="PID != '' and PID != null">
+							and PARENT_IDX = '${PID}'
+					    </if>
+					    <if test="TYPES != '' and TYPES != null">
+							and GUBUN = '${TYPES}'
+					    </if>
+					    <if test="TYPESARRAY != '' and TYPESARRAY != null">
+							and GUBUN IN
+						    <foreach item="item" collection="TYPESARRAY" index="index" open="(" separator="," close=")">
+						        #{item}
+						    </foreach>
+					    </if>
+					    <if test="TAGS != '' and TAGS != null">
+							and 
+						    <foreach item="item" collection="TAGS" index="index" open="(" separator="OR" close=")">
+						        TAGS like '%${item}%'
+						    </foreach>
+					    </if>
+					    <if test="SLUG != '' and SLUG != null">
+							and SLUG = '${SLUG}'
+					    </if>
+					    <if test="RECOM != '' and RECOM != null">
+							and RECOM = '${RECOM}'
+					    </if>
+					    <if test="MAINSTATUS != '' and MAINSTATUS != null">
+							and MAINSTATUS = '${MAINSTATUS}'
+					    </if>
+					    <if test="GUBUN != '' and GUBUN != null">
+							and GUBUN = #{GUBUN}
+					    </if>
+					    <if test="sdate != '' and sdate != null">
+					    	<![CDATA[
+							and date_format(UPDA_DTM, '%Y-%m-%d') >= '${sdate}'
+							]]>
+					    </if>
+					    <if test="edate != '' and edate != null">
+					    	<![CDATA[
+							and date_format(UPDA_DTM, '%Y-%m-%d') <= '${edate}'
+							]]>
+					    </if>
+						<choose>
+							<when test="MAINPOPUP != '' and MAINPOPUP != null">
+					    	<![CDATA[
+							AND (MAINSTATUS = 'N' OR (MAINSTATUS='Y' AND (START_DTM<=now() AND END_DTM >= now() ) ) )
+							]]>
+						    <if test="SECTION != '' and SECTION != null">
+								AND (SECTION = '${SECTION}' OR SECTION='ALL')
+						    </if>
+							</when> 
+							<otherwise>
+						    <if test="SECTION != '' and SECTION != null">
+								and SECTION = '${SECTION}'
+						    </if>
+							</otherwise>
+						</choose>
+					    
+					    <if test="keyword != '' and keyword != null">
+							<choose>
+								<when test="target == 'all'">
+								and (TITLE like '%${keyword}%' OR CONTENTS like '%${keyword}%' OR SECTION like '%${keyword}%')
+								</when> 
+								<otherwise>
+								and ${target} like '%${keyword}%'
+								</otherwise>
+							</choose>
+					    </if>
+					</where>
+		<![CDATA[
+	            ) AA
+	    ]]>
+		<choose>
+			<when test="ORDERBY != '' and ORDERBY != null">
+			<![CDATA[
+			ORDER BY ${ORDERBY}
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+			ORDER BY IDX DESC
+			]]>
+			</otherwise>
+		</choose>
+	    
+	    	<if test="END != '' and END != null">
+				<![CDATA[
+			    LIMIT #{START} , #{END}
+			    ]]>
+	    	</if>
+	</select>
+	
+	<select id="selectBoardRecomList" parameterType="hashmap" resultType="hashmap" resultMap="contents">
+	    <![CDATA[
+	            SELECT
+	                AA.*,
+	    ]]>
+	    <choose>
+	    <when test="CODE == 'slide-contents'">
+				    <choose>
+				    <when test="IMAGES == 'GALLERY'">
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'gallery' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobgallery' LIMIT 1)  AS MOBIMG_NAME,
+					</when>
+					<otherwise>
+
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'slide' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobslide' LIMIT 1)  AS MOBIMG_NAME,
+					</otherwise>
+					</choose>
+	    </when>
+	    <when test="COLFILETYPE == 'file'">
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'thumb' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobthumb' LIMIT 1)  AS MOBIMG_NAME,
+					( SELECT IDX FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'file' LIMIT 1)  AS FILE_NAME,
+					( SELECT IDX FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobfile' LIMIT 1)  AS MOBFILE_NAME,
+	    </when>
+	    
+	    <otherwise>
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'thumb' LIMIT 1)  AS IMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobthumb' LIMIT 1)  AS MOBIMG_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'main' LIMIT 1)  AS MAIN_NAME,
+					( SELECT CONCAT(PATH_NAME,STORED_FILE_NAME) FROM TBL_BOARD_FILE WHERE BOARD_IDX = AA.IDX AND DEL_GB = 'N' AND FILE_GUBUN = 'mobmain' LIMIT 1)  AS MOBMAIN_NAME,
+	    </otherwise>
+	    </choose>
+	    <![CDATA[
+					(SELECT COUNT(IDX) FROM TBL_BOARD_FILE WHERE BOARD_IDX=AA.IDX AND DEL_GB='N') AS FILE_COUNT
+	            FROM(  
+			        SELECT
+			            A.IDX,
+		]]>
+		<choose>
+			<when test="FRONTCOL != '' and FRONTCOL != null">
+			<![CDATA[
+						${FRONTCOL}
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+						PARENT_IDX,
+			            SLUG,
+			            LANG,
+			            SECTION,
+			            GUBUN,
+			            TITLE,
+			            TITLE_SUB,
+			            CONTENTS,
+			            HIT_CNT,
+			            TAGS,
+			            STATUS,
+			            MAINSTATUS,
+			            MAINSORT,
+			            DATE_FORMAT(START_DTM, '%Y-%m-%d %H:%i:%S') AS START_DTM,
+			            DATE_FORMAT(END_DTM, '%Y-%m-%d %H:%i:%S') AS END_DTM,
+			            VIDEO,
+			            SORT,
+			            RECOM,
+			            CREA_ID,
+			            CREA_NAME,
+			            DATE_FORMAT(CREA_DTM, '%Y-%m-%d %H:%i:%S') AS CREA_DTM,
+			            DATE_FORMAT(UPDA_DTM, '%Y-%m-%d %H:%i:%S') AS UPDA_DTM
+			]]>
+			</otherwise>
+		</choose>
+		<![CDATA[
+			        FROM
+			            TBL_BOARD A
+					JOIN ( 
+						SELECT 
+							MAX( IDX ) AS IDX 
+						FROM TBL_BOARD 
+		    ]]>
+					<where>
+					    <if test="LANG != '' and LANG != null">
+							and LANG = '${LANG}'
+					    </if>
+					    <if test="STATUS != '' and STATUS != null">
+							and STATUS = '${STATUS}'
+					    </if>
+					    <if test="PID != '' and PID != null">
+							and PARENT_IDX = '${PID}'
+					    </if>
+					    <if test="TYPES != '' and TYPES != null">
+							and GUBUN = '${TYPES}'
+					    </if>
+					    <if test="RECOM != '' and RECOM != null">
+							and RECOM = '${RECOM}'
+					    </if>
+					    <if test="MAINSTATUS != '' and MAINSTATUS != null">
+							and MAINSTATUS = '${MAINSTATUS}'
+					    </if>
+					    <if test="GUBUN != '' and GUBUN != null">
+							and GUBUN = #{GUBUN}
+					    </if>
+					    <if test="SECTION != '' and SECTION != null">
+							and SECTION = '${SECTION}'
+					    </if>
+					</where>
+
+				<choose>
+					<when test="GROUPNAME != '' and GROUPNAME != null">
+					<![CDATA[
+					GROUP BY ${GROUPNAME} 
+					ORDER BY ${GROUPNAME} ASC 
+					]]>
+					</when> 
+					<otherwise>
+					<![CDATA[
+					GROUP BY MAINSORT 
+					ORDER BY MAINSORT ASC 
+					]]>
+					</otherwise>
+				</choose>
+		<![CDATA[
+				) B 
+				ON A.IDX = B.IDX
+	            ) AA
+	    ]]>
+	  
+		<choose>
+			<when test="GROUPNAME != '' and GROUPNAME != null">
+			<![CDATA[
+			ORDER BY ${GROUPNAME} ASC 
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+			ORDER BY MAINSORT ASC 
+			]]>
+			</otherwise>
+		</choose>
+	    <if test="START != '' and START != null">
+	    	<if test="END != '' and END != null">
+				<![CDATA[
+			    LIMIT #{START} , #{END}
+			    ]]>
+	    	</if>
+	    </if>
+	</select>
+	
+	<select id="selectBoardSlug" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            COUNT(SLUG) as COUNT
+	        FROM
+	            TBL_BOARD
+	        WHERE
+	            SLUG = #{SLUG}        
+	    ]]>
+	</select>
+	<select id="selectBoardSlugIDX" parameterType="hashmap" resultType="int">
+	    <![CDATA[
+	        SELECT
+	            IDX
+	        FROM
+	            TBL_BOARD
+	        WHERE
+	            SLUG = #{SLUG}        
+	    ]]>
+	</select>
+	<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+	    <![CDATA[
+	        
+	        INSERT INTO TBL_BOARD
+	        (
+	        		PARENT_IDX,
+	            SLUG, 
+			    LANG,
+			    SECTION,
+	            GUBUN, 
+	            TITLE, 
+			    TITLE_SUB,
+	            CONTENTS, 
+	            CONTENTS_MOBILE, 
+	            STATUS, 
+	            SORT, 
+	            TAGS,
+	            MAINSTATUS, 
+	            MAINSORT, 
+	    ]]>
+			    	<if test="START_DTM != '' and START_DTM != null">
+			    		START_DTM,
+			    	</if>
+		<![CDATA[
+	            
+	    ]]>
+			    	<if test="END_DTM != '' and END_DTM != null">
+			    		END_DTM,
+			    	</if>
+		<![CDATA[
+	            VIDEO,
+			    RECOM,
+	            HIT_CNT,
+	            CREA_ID,
+	            CREA_NAME,
+	            CREA_DTM,
+	            UPDA_DTM
+	        )
+	        VALUES
+	        (
+	            #{PID}, 
+	            #{SLUG}, 
+	            #{LANG}, 
+	            #{SECTION}, 
+	            #{GUBUN}, 
+	            #{TITLE}, 
+	            #{TITLE_SUB}, 
+	            #{CONTENTS}, 
+	            #{CONTENTS_MOBILE}, 
+	            #{STATUS}, 
+	            #{SORT}, 
+	            #{TAGS}, 
+	            #{MAINSTATUS}, 
+	            #{MAINSORT}, 
+	    	]]>
+			    	<if test="START_DTM != '' and START_DTM != null">
+			    		#{START_DTM},
+			    	</if>
+			<![CDATA[
+		            
+		    ]]>
+			    	<if test="END_DTM != '' and END_DTM != null">
+			    		#{END_DTM},
+			    	</if>
+			<![CDATA[
+	            #{VIDEO}, 
+	            #{RECOM}, 
+	            0,  
+	            #{CREA_ID}, 
+	            #{CREA_NAME},
+	            now(),
+			]]>
+		<choose>
+			<when test="UPDA_DTM != '' and UPDA_DTM != null">
+			<![CDATA[
+			    #{UPDA_DTM}
+			]]>
+			</when> 
+			<otherwise>
+			<![CDATA[
+				now()
+			]]>
+			</otherwise>
+		</choose>
+		<![CDATA[
+	        )
+	    ]]>
+	</insert>
+	<update id="updateHitCnt" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_BOARD 
+	        SET
+	            HIT_CNT = IFNULL(HIT_CNT, 0) + 1
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	 
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap" resultMap="contents">
+	    <![CDATA[
+	        SELECT
+	        	IDX,
+	        	PARENT_IDX,
+	            SLUG, 
+	            LANG,
+	            SECTION,
+	            GUBUN, 
+	            TITLE, 
+	            TITLE_SUB,
+	            CONTENTS, 
+	            CONTENTS_MOBILE, 
+	            STATUS, 
+	            MAINSTATUS,
+	            MAINSORT,
+	            TAGS, 
+	            DATE_FORMAT(START_DTM, '%Y-%m-%d %H:%i:%S') AS START_DTM,
+	            DATE_FORMAT(END_DTM, '%Y-%m-%d %H:%i:%S') AS END_DTM,
+			    SORT,
+	            VIDEO,
+	            RECOM,
+	            HIT_CNT,
+	            CREA_ID,
+	            CREA_NAME,
+	            DATE_FORMAT(CREA_DTM, '%Y-%m-%d %H:%i:%S') AS CREA_DTM,
+	            DATE_FORMAT(UPDA_DTM, '%Y-%m-%d %H:%i:%S') AS UPDA_DTM
+	        FROM
+	            TBL_BOARD
+	        WHERE
+	            IDX = #{IDX}        
+	    ]]>
+	    <if test="STATUS != '' and STATUS != null">
+			and STATUS = '${STATUS}'
+	    </if>
+	</select>
+	
+	<update id="updateBoard" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_BOARD 
+	        SET
+	            SLUG = #{SLUG},
+	            GUBUN = #{GUBUN},
+	            LANG = #{LANG},
+	            TITLE = #{TITLE},
+	            TITLE_SUB = #{TITLE_SUB},
+	            CONTENTS = #{CONTENTS},
+	            CONTENTS_MOBILE = #{CONTENTS_MOBILE},
+	            STATUS = #{STATUS},
+	            TAGS = #{TAGS},
+	            MAINSTATUS = #{MAINSTATUS},
+	            MAINSORT = #{MAINSORT},
+	            SORT = #{SORT},
+	    ]]>
+			    	<if test="START_DTM != '' and START_DTM != null">
+			    		START_DTM = #{START_DTM},
+			    	</if>
+		<![CDATA[
+	    ]]>
+			    	<if test="END_DTM != '' and END_DTM != null">
+			    		END_DTM = #{END_DTM},
+			    	</if>
+		<![CDATA[
+	            VIDEO = #{VIDEO},
+	            SECTION = #{SECTION},
+	            RECOM = #{RECOM},
+			    UPDA_DTM = DATE_FORMAT(#{UPDA_DTM}, '%Y-%m-%d %H:%i:%S')
+	            
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	</update>
+	<update id="deleteBoard" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_BOARD
+	        WHERE
+	            IDX = #{IDX}
+	    ]]>
+	</update>
+	
+	<update id="updateMainStatus" parameterType="hashmap">
+		<if test='MAINSTATUS != "" and MAINSTATUS != null'>
+	    <if test='MAINSTATUS == "Y"'>
+	    <![CDATA[
+	        UPDATE TBL_BOARD
+	        SET
+	            MAINSTATUS = 'N'  
+	    ]]>
+	    <![CDATA[
+	        UPDATE TBL_BOARD 
+	        SET
+	            MAINSTATUS = 'Y'
+	        WHERE
+	            IDX = #{IDX}    
+	    ]]>
+	    </if>
+	    </if>
+	</update>
+	<!-- 게시판 파일 관련 -->
+	<insert id="insertFile" parameterType="hashmap">
+	    <![CDATA[
+	        INSERT INTO TBL_BOARD_FILE
+	        (
+	        	IDX,
+	            BOARD_IDX,
+	            ORIGINAL_FILE_NAME,
+	            STORED_FILE_NAME,
+	            FILE_GUBUN,
+	            FILE_SORT,
+	            FILE_SIZE,
+	            PATH_NAME,
+	    ]]>
+			    	<if test="COMMENT != '' and COMMENT != null">
+			    		COMMENT,
+			    	</if>
+		<![CDATA[
+	            CREA_DTM
+	        )
+	        VALUES
+	        (
+	            #{IDX},
+	            #{BOARD_IDX},
+	            #{ORIGINAL_FILE_NAME},
+	            #{STORED_FILE_NAME},
+	            #{FILE_GUBUN},
+	            #{FILE_SORT},
+	            #{FILE_SIZE},
+	            #{PATH_NAME},
+	    ]]>
+			    	<if test="COMMENT != '' and COMMENT != null">
+			    		COMMENT = #{COMMENT},
+			    	</if>
+		<![CDATA[
+	            now()
+	        )
+	    ]]>
+	</insert>
+	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        SELECT
+            IDX,
+            ORIGINAL_FILE_NAME,
+            STORED_FILE_NAME,
+            FILE_GUBUN,
+            FILE_SORT,
+	        PATH_NAME,
+            ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+        FROM
+            TBL_BOARD_FILE
+
+		    ]]>
+		<where>
+            BOARD_IDX = #{IDX}
+            AND DEL_GB = 'N'
+		    <if test="GUBUN != '' and GUBUN != null">
+		    AND FILE_GUBUN = #{GUBUN}
+		    </if>
+		</where>
+		<![CDATA[
+		ORDER by FILE_SORT ASC
+    	]]>
+	</select>
+
+	<update id="updateFile" parameterType="hashmap">
+	    <![CDATA[
+	        UPDATE TBL_BOARD_FILE SET
+	            ORIGINAL_FILE_NAME = #{ORIGINAL_FILE_NAME},
+	            STORED_FILE_NAME = #{STORED_FILE_NAME},
+	            FILE_GUBUN = #{FILE_GUBUN},
+	            FILE_SORT = #{FILE_SORT},
+	            FILE_SIZE = #{FILE_SIZE},
+	            PATH_NAME = #{PATH_NAME}
+	        WHERE
+	            IDX = #{FILE_IDX}   
+	    ]]>
+	</update>
+	<update id="deleteFile" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_BOARD_FILE
+	        WHERE
+	            IDX = #{FILE_IDX}  
+	    ]]>
+	</update>
+	 
+	<update id="deleteFileList" parameterType="hashmap">
+	    <![CDATA[
+	        DELETE FROM TBL_BOARD_FILE
+	        WHERE
+	            BOARD_IDX = #{IDX}   
+	    ]]>
+	</update>
+</mapper>
