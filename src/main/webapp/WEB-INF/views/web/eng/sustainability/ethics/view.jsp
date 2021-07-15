@@ -42,7 +42,7 @@
 					<div class="anchor_wrap">
 						<div class="sec_inner1 sec_inner">
 							<div class="sec_tit" data-motion="scaleType1">
-								<div class="img_box"><img src="/resource/images/sustainability/ethics/view_sec1_img1.jpg" alt=""></div>
+								<div class="img_box"><img src="/resource/eng/images/sustainability/ethics/view_sec1_img1.jpg" alt=""></div>
 							</div>
 							<div class="sec_txt">
 									<p class="txt1">
@@ -74,7 +74,7 @@
 					<div class="anchor_wrap">
 						<div class="sec_inner1 sec_inner">
 							<div class="sec_tit" data-motion="scaleType1">
-								<div class="img_box"><img src="/resource/images/sustainability/ethics/view_sec2_img1.jpg" alt=""></div>
+								<div class="img_box"><img src="/resource/eng/images/sustainability/ethics/view_sec2_img1.jpg" alt=""></div>
 							</div>
 						
 							<div class="sec_txt">
@@ -157,7 +157,7 @@
 							</div>
 						</div>
 						<div class="btn_area">
-							<a href="/resource/file/SMGROUP_Ethical_Management_KR.pdf" target="_blank" class="btn_default download_btn">Download Ethical Management</a>
+							<a href="/resource/eng/file/SMGROUP_Ethical_Management_EN.pdf" target="_blank" class="btn_default download_btn">Download Ethical Management</a>
 						</div>
 					</div>
 				</div>

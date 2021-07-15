@@ -36,7 +36,7 @@
 					<div class="tab_wrap">
 						<ul>
 							<li>
-								<a href="/sustainability/ethics/list.do">윤리경영</a>
+								<a href="/sustainability/ethics/list.do">윤리준법경영</a>
 							</li>
 							<li>
 								<a href="/sustainability/partnership/list.do">상생경영</a>

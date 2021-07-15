@@ -11,7 +11,7 @@
 <%@ include file="/include/header.jsp" %>
 <meta name="keywords" content="SM그룹, 지속가능경영, SM그룹 윤리경영, 윤리경영, SM 윤리경영, 에스엠 윤리경영, 에스엠그룹, 에스엠그룹 윤리경영">
 <meta name="description" content="SM그룹 윤리경영 페이지입니다. SM그룹은 모든 경영활동에서 가치 판단의 기준을 정하고 실천해 오고 있습니다.">
-<title>윤리경영 | SM그룹</title>
+<title>윤리준법경영 | SM그룹</title>
 </head>
 
 <body>
@@ -20,8 +20,8 @@
         <div id="container" class="type02">
 			<!-- s: title -->
             <div class="page_tit">
-                <h2><span>윤리경영</span></h2>
-				<p class="txt1">Ethical Management</p>
+                <h2><span>윤리준법경영</span></h2>
+				<p class="txt1">Ethical Compliance Management</p>
             </div>
             <!--// e: title -->
             <div id="contents">
@@ -30,13 +30,13 @@
 					<ul class="breadcrumb">
 						<li class="home">홈</li>
 						<li class="depth1">지속가능경영</li>
-						<li class="depth2">윤리경영</li>
+						<li class="depth2">윤리준법경영</li>
 					</ul>
 					<!--// e: breadcrumb -->
 					<div class="tab_wrap">
 						<ul>
 							<li>
-								<a href="/sustainability/ethics/list.do" class="on">윤리경영</a>
+								<a href="/sustainability/ethics/list.do" class="on">윤리준법경영</a>
 							</li>
 							<li>
 								<a href="/sustainability/partnership/list.do">상생경영</a>
@@ -51,31 +51,31 @@
 					</div>
 				</div>
                 <div class="cont_tit">
-                    <h3>SM그룹 조직 구성원이 지켜야 할 윤리강령을 제정하고 실천합니다.<br />건전한 윤리적 규율 안에서 경영성공을 추구합니다.</h3>
+                    <h3>SM그룹 윤리준법경영을 실천하기 위해 행동강령 및 지침을 제정·운영하며<br />잠재적 규정 및 법령 위반사항을 신고할 수 있도록 신고센터를 운영하고 있습니다.</h3>
                 </div>
 				<div class="sec1 cardnews section">
 					<div class="card_news_wrap">
 						<div class="box">
 							<img src="/resource/images/sustainability/ethics_cardnews_thumb1.jpg" class="thumb" alt="">
 							<a href="view.do#page1">
-								<p class="txt1">고객중심의 경영실천을 통해 <br>공유가치창출을 <br>목표로 합니다.</p>
+								<p class="txt1">고객과의 건강하고<br>행복한 동행을 위해<br>윤리준법경영을 추구합니다.</p>
 							</a>
 						</div>
 						<div class="box">
 							<img src="/resource/images/sustainability/ethics_cardnews_thumb2.jpg" class="thumb" alt="">
 							<a href="view.do#page2">
-								<p class="txt1">도덕적 가치에 기초를 둔 <br>바람직한 의사결정을 <br>지향합니다.</p>
+								<p class="txt1">임직원이 지켜야 할 행동강령 및<br>행동지침을 제정하여 법규준수<br>문화를 확립해 나가고 있습니다.</p>
 							</a>
 						</div>
 						<div class="box">
 							<img src="/resource/images/sustainability/ethics_cardnews_thumb3.jpg" class="thumb" alt="">
 							<a href="view.do#page3">
-								<p class="txt1">자발적인 윤리강령 준수로 <br>준법경영 문화확산의 틀을 <br>만들어 갑니다.</p>
+								<p class="txt1">익명성이 보장된<br>내부고발 시스템을<br>운영하고 있습니다.</p>
 							</a>
 						</div>
 					</div>
 				</div>
-                <div class="sec2 section section_full">
+             <!--    <div class="sec2 section section_full">
 					<div class="sec_inner">
 						<div class="tit_wrap">
 							<h4>윤리규범</h4>
@@ -86,7 +86,7 @@
 							<a href="/resource/file/SMGROUP_Code_of_Ethics_KR.pdf" class="common_btn download" target="_blank" title="새 창으로 바로가기"><span>다운로드</span></a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<%@ include file="/include/floating.jsp" %>
             </div>
         </div>

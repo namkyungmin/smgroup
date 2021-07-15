@@ -66,7 +66,7 @@
 .ethics_view .sec1 .sec_inner1 .sec_tit h2{position:absolute; top:10%; left:0; width:100%; padding-left:8.666%; text-align:center; letter-spacing:9px; line-height:1; color:#37608e;}
 .ethics_view .sec1 .sec_inner1 .img_box{overflow:hidden;}
 .ethics_view .sec1 .sec_inner1 .sec_txt{padding:50px 6.666% 0 6.666%;}
-.ethics_view .sec1 .sec_inner2 h3{position:relative; padding-top:42.5%; margin-bottom:10px; background:url(/resource/mobile/images/sustainability/ethics/view_sec1_bg1.jpg) center 0 no-repeat; background-size:100% auto; font-size:20px; text-align:center; color:#fff;}
+.ethics_view .sec1 .sec_inner2 h3{position:relative; padding-top:42.5%; margin-bottom:10px; background:url(/resource/eng/mobile/images/sustainability/ethics/view_sec1_bg1.jpg) center 0 no-repeat; background-size:100% auto; font-size:20px; text-align:center; color:#fff;}
 .ethics_view .sec1 .sec_inner2 h3 span{position:absolute; left:0; top:50%; width:100%; text-align:center; transform:translate(0,-50%);}
 .ethics_view .sec1 .sec_inner2 .practice_lst{overflow:hidden; padding:0 6.6666%;}
 .ethics_view .sec1 .sec_inner2 .practice_lst li{position:relative; padding:30px 0 30px 48px; border-bottom:1px solid #606060; font-family:'AritaBuriM'; font-size:15px; text-align:left; line-height:23px;}
@@ -81,7 +81,7 @@
 .ethics_view .sec2 .sec_inner1 .sec_tit h2{position:absolute; top:22px; right:22px; letter-spacing:7px; line-height:1; color:#7a785f; writing-mode: vertical-lr; -webkit-writing-mode: vertical-lr; -ms-writing-mode: tb-lr;}
 .ethics_view .sec2 .sec_inner1 .img_box{overflow:hidden;}
 .ethics_view .sec2 .sec_inner1 .sec_txt{}
-.ethics_view .sec2 .sec_inner2{margin-top:-126px; background:url(/resource/mobile/images/sustainability/ethics/view_sec2_bg1.jpg) center 0 no-repeat; background-size:cover;}
+.ethics_view .sec2 .sec_inner2{margin-top:-126px; background:url(/resource/eng/mobile/images/sustainability/ethics/view_sec2_bg1.jpg) center 0 no-repeat; background-size:cover;}
 .ethics_view .sec2 .sec_inner2 .inner{padding:125px 6.6666% 50px; margin:0 auto;}
 .ethics_view .sec2 .sec_inner2 h3{margin-bottom:-10px; font-family:'Exo'; font-size:20px; font-weight:400; line-height:1; color:#606060;}
 /*.ethics_view .sec2 .sec_inner2 .slide_wrap{border-color:#cabda8;}
@@ -90,13 +90,13 @@
 .ethics_view .sec2 .sec_inner2 .slide_cont dt{color:#606060;}
 .ethics_view .sec2 .sec_inner2 .slide_cont dd{color:#606060;}
 .ethics_view .sec2 .sec_inner2 .slide_control{bottom:14px;}
-.ethics_view .sec2 .sec_inner2 .slide_control > a{background-image:url(/resource/mobile/images/sustainability/ethics/slide_arr.png);}
+.ethics_view .sec2 .sec_inner2 .slide_control > a{background-image:url(/resource/eng/mobile/images/sustainability/ethics/slide_arr.png);}
 .ethics_view .sec2 .sec_inner2 .slide_control .counter{color:#606060;}
 
 .ethics_view .sec3{padding:0 6.6666%;}
 .ethics_view .sec3 .sec_inner1{margin-bottom:40px;}
 .ethics_view .sec3 .sec_inner1 .sec_txt{}
-.ethics_view .sec3 .sec_inner2 .cont{position:absolute; left:0; top:0; position:relative; padding-top:150%; background:url(/resource/mobile/images/sustainability/ethics/view_sec3_bg1.jpg) center 0 no-repeat; background-size:cover;}
+.ethics_view .sec3 .sec_inner2 .cont{position:absolute; left:0; top:0; position:relative; padding-top:150%; background:url(/resource/eng/mobile/images/sustainability/ethics/view_sec3_bg1.jpg) center 0 no-repeat; background-size:cover;}
 .ethics_view .sec3 .sec_inner2 h2{position:absolute; left:6.6666%; top:5%; font-family:'Exo'; font-size:12px; font-weight:400; line-height:21px; letter-spacing:6px; color:#b4814f;}
 .ethics_view .sec3 .sec_inner2 .motion{position:absolute; left:0; bottom:0; padding: 5% 9.6% 15%; text-align:right;}
 .ethics_view .sec3 .sec_inner2 h3{margin-bottom:20px; font-family:'Exo'; font-size:20px; font-weight:400; line-height:1; color:#7c7c7c;}

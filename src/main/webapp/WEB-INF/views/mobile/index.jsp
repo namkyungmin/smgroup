@@ -140,7 +140,7 @@
 							</p>
 							<div class="btn_wrap">
 								<a href="/mobile/sustainability/ethics/list.do" class="common_btn type02">
-									<span>윤리경영 바로가기</span>
+									<span>윤리준법경영 바로가기</span>
 								</a>
 							</div>
 						</li>

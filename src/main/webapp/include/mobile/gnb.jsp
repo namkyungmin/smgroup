@@ -44,7 +44,7 @@
                         <a href="#none">지속가능경영</a>
                         <ul class="depth2_list">
                             <li class="depth2"><a href="/mobile/sustainability/index.do">지속가능경영</a></li>
-                            <li class="depth2"><a href="/mobile/sustainability/ethics/list.do">윤리경영</a></li>
+                            <li class="depth2"><a href="/mobile/sustainability/ethics/list.do">윤리준법경영</a></li>
                             <li class="depth2"><a href="/mobile/sustainability/partnership/list.do">상생경영</a></li>
                             <li class="depth2"><a href="/mobile/sustainability/environment/list.do">환경경영</a></li>
                             <li class="depth2"><a href="/mobile/sustainability/social-contribution/list.do">사회공헌</a></li>

@@ -36,8 +36,8 @@
                 <div class="section" id="section1">
                     <div class="tit_wrap">
                         <div class="title">
-                            <h3>윤리경영</h3>
-                            <p>Ethical Management</p>
+                            <h3>윤리준법경영</h3>
+                            <p>Ethical Compliance Management</p>
                         </div>
                         
                     </div>

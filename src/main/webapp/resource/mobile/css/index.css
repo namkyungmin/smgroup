@@ -48,6 +48,7 @@
 .sec02 .slide_wrap .slick-dots li button{padding:0; width:12px; height:12px; text-indent:-9999px; }
 .sec02 .slide_wrap .slick-dots li button:before{width:12px; height:12px; background:#dddddd; border-radius:100%; opacity:1;}
 .sec02 .slide_wrap .slick-dots .slick-active button:before{background:#8a1c22;}
+.sec02 .btn_wrap a{width:190px;}
 
 .sec03{position:relative; padding:60px 0 67.6%; background:url(/resource/mobile/images/main/bg_sec02.jpg) no-repeat center; background-size:cover;}
 .sec03 .tit_wrap{margin-bottom:25px;}

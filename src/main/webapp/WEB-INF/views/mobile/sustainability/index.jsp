@@ -29,8 +29,8 @@
             <div id="contents" class="contents">
                 <div class="section sec1 sec_full">
                     <div class="title">
-                        <h3>윤리경영</h3>
-                        <p>Ethical Management</p>
+                        <h3>윤리준법경영</h3>
+                        <p>Ethical Compliance Management</p>
                     </div>
                     <div class="sec_inner">
                         <p>

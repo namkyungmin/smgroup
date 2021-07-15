@@ -26,10 +26,10 @@
             <!--// e: title -->
             <div id="contents">
                 <div class="tab_wrap">
-                    <p class="selected">윤리경영</p>
+                    <p class="selected">윤리준법경영</p>
                     <ul>
                         <li>
-                            <a href="">윤리경영</a>
+                            <a href="">윤리준법경영</a>
                         </li>
                         <li>
                             <a href="">상생경영</a>

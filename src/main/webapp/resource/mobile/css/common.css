@@ -167,7 +167,8 @@ input {background:#fff;}
 #footer .footer .row01 .award_mark{float:right; width:32px; margin-top:-4px; margin-right:15px;}
 #footer .footer .row01 .btn_pc{float:right; width:80px; height:35px; border:1px solid #d3dbdf; font-size:14px; font-weight:700; text-align:center; line-height:35px; color:#fff;}
 #footer .footer .row02{padding:20px 0 25px; font-size:0;}
-#footer .footer .row02 a{display:inline-block; width:25%; border-left:1px solid #cad3d8; box-sizing:border-box; font-size:14px; color:#fff; text-align:center;}
+#footer .footer .row02 a{display:inline-block; width:23%; border-left:1px solid #cad3d8; box-sizing:border-box; font-size:14px; color:#fff; text-align:center;}
+#footer .footer .row02 .help{width:30%; color:#8a1c22;}
 #footer .footer .row02 a:first-of-type{border-left:0;}
 #footer .footer .row03{font-size:13px; line-height:22px;}
 

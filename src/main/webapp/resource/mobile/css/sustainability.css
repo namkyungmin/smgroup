@@ -41,6 +41,9 @@
 .sustainability_view .sec_txt{margin-bottom:40px;}
 .sustainability_view .sec_txt .txt1{margin-bottom:35px; font-size:20px; line-height:35px; color:#333;}
 .sustainability_view .sec_txt .txt2{font-family:'AritaBuriM'; font-size:15px; font-weight:400; line-height:23px; color:#666;}
+.sustainability_view .sec_txt .txt3{font-size:20px; line-height:35px; color:#333;}
+.sustainability_view .sec_txt2 .txt1{margin-bottom:35px; font-size:20px; line-height:35px; color:#333;}
+.sustainability_view .sec_txt2 .txt2{font-family:'AritaBuriM'; font-size:15px; font-weight:400; line-height:23px; color:#666;}
 .sustainability_view .btn_default{position:relative; display:inline-block; width:179px; padding:24px 25px; background:#fff; border:1px solid #d3dbdf; font-size:13px; line-height:1; text-align:left; color:#41545f;}
 .sustainability_view .btn_default:after{position:absolute; right:25px; top:50%; width:12px; height:12px; margin-top:-6px; background:url(/resource/mobile/images/sustainability/btn_ico.png) 0 0 no-repeat; background-size:24px; content:"";}
 .sustainability_view .download_btn:after{background-position:0 0;}
@@ -66,43 +69,64 @@
 .ethics_view .sec1 .sec_inner1 .sec_tit h2{position:absolute; top:10%; left:0; width:100%; padding-left:8.666%; text-align:center; letter-spacing:9px; line-height:1; color:#37608e;}
 .ethics_view .sec1 .sec_inner1 .img_box{overflow:hidden;}
 .ethics_view .sec1 .sec_inner1 .sec_txt{padding:50px 6.666% 0 6.666%;}
-.ethics_view .sec1 .sec_inner2 h3{position:relative; padding-top:42.5%; margin-bottom:10px; background:url(/resource/mobile/images/sustainability/ethics/view_sec1_bg1.jpg) center 0 no-repeat; background-size:100% auto; font-size:20px; text-align:center; color:#fff;}
-.ethics_view .sec1 .sec_inner2 h3 span{position:absolute; left:0; top:50%; width:100%; text-align:center; transform:translate(0,-50%);}
-.ethics_view .sec1 .sec_inner2 .practice_lst{overflow:hidden; padding:0 6.6666%;}
-.ethics_view .sec1 .sec_inner2 .practice_lst li{position:relative; padding:30px 0 30px 48px; border-bottom:1px solid #606060; font-family:'AritaBuriM'; font-size:15px; text-align:left; line-height:23px;}
-.ethics_view .sec1 .sec_inner2 .practice_lst li:before{content:"1"; position:absolute; left:0; top:30px; width:48px; font-family:'Exo'; font-size:49px; text-align:center; line-height:1; color:#606060;}
-.ethics_view .sec1 .sec_inner2 .practice_lst li:nth-child(1):before{content:"1";}
-.ethics_view .sec1 .sec_inner2 .practice_lst li:nth-child(2):before{content:"2";}
-.ethics_view .sec1 .sec_inner2 .practice_lst li:nth-child(3):before{content:"3";}
-.ethics_view .sec1 .sec_inner2 .practice_lst li:nth-child(4):before{content:"4";}
 
-.ethics_view .sec2 .sec_inner1{padding:0 6.6666%; margin-bottom:40px;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system{position:absolute; left:0; top:225px; width:100%; padding:0 6.6666%;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system h2{padding-left:9px; margin-bottom:10%; text-align:center; letter-spacing:9px; line-height:1; color:#a0b09e;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system h3{margin-bottom:30px; font-size:18px; text-align:center; line-height:1; color:#606060;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system ul{text-align:center;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system li{display:inline-block; padding-top:27px; padding-left :10px; width:105px; height:105px; margin-top:-23px; margin-left:-10px; border:1px solid #FFFFFF; border-radius:50%; font-family:'AritaBuriM'; font-size:15px; text-align:center; color:#FFFFFF;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system li:first-child{margin-left:0; padding-top:33px;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system li:nth-child(4){margin-left:0; padding-top:33px; padding-left:17px;}
+.ethics_view .sec1 .sec_inner1 .sec_tit .system li span{display:table-cell; vertical-align:middle;}
+
+.ethics_view .sec1 .sec_inner2 .sec_txt{overflow:hidden; float:none;}
+.ethics_view .sec1 .sec_inner2 .sec_txt .txt1{float:left;}
+.ethics_view .sec1 .sec_inner2 .set_tit{height:616px; background:url(/resource/mobile/images/sustainability/ethics/view_sec1_bg1.jpg) center 0 no-repeat;}
+
+.ethics_view .sec2 .sec_inner1{padding:0 6.6666%; margin-bottom:50px;}
 .ethics_view .sec2 .sec_inner1 .sec_tit{position:relative;}
 .ethics_view .sec2 .sec_inner1 .sec_tit h2{position:absolute; top:22px; right:22px; letter-spacing:7px; line-height:1; color:#7a785f; writing-mode: vertical-lr; -webkit-writing-mode: vertical-lr; -ms-writing-mode: tb-lr;}
 .ethics_view .sec2 .sec_inner1 .img_box{overflow:hidden;}
-.ethics_view .sec2 .sec_inner1 .sec_txt{}
-.ethics_view .sec2 .sec_inner2{margin-top:-126px; background:url(/resource/mobile/images/sustainability/ethics/view_sec2_bg1.jpg) center 0 no-repeat; background-size:cover;}
-.ethics_view .sec2 .sec_inner2 .inner{padding:125px 6.6666% 50px; margin:0 auto;}
-.ethics_view .sec2 .sec_inner2 h3{margin-bottom:-10px; font-family:'Exo'; font-size:20px; font-weight:400; line-height:1; color:#606060;}
-/*.ethics_view .sec2 .sec_inner2 .slide_wrap{border-color:#cabda8;}
-.ethics_view .sec2 .sec_inner2 .slide_wrap:after{background:#cabda8;}*/
-.ethics_view .sec2 .sec_inner2 .slide_cont{min-height:120px;}
-.ethics_view .sec2 .sec_inner2 .slide_cont dt{color:#606060;}
-.ethics_view .sec2 .sec_inner2 .slide_cont dd{color:#606060;}
-.ethics_view .sec2 .sec_inner2 .slide_control{}
-.ethics_view .sec2 .sec_inner2 .slide_control > a{background-image:url(/resource/mobile/images/sustainability/ethics/slide_arr.png);}
-.ethics_view .sec2 .sec_inner2 .slide_control .counter{color:#606060;}
+
+
+
+
+.ethics_view .sec2 .sec_inner2{padding:0 6.6666%; margin-bottom:50px;}
+.ethics_view .sec2 .sec_inner2 .btn_area{text-align:right; width:140px; float:right}
+.ethics_view .sec2 .sec_inner2 .btn_area a{width:130px; margin-top:8px; padding-top:15px; padding-bottom:15px;}
+.ethics_view .sec2 .sec_inner2 h3 span{position:absolute; margin-top:20px; text-align:left; font-size:20px; color:#333; font-weight:400;}
+.ethics_view .sec2 .sec_inner2 .practice_lst{overflow:hidden; padding-top:10px; width:100%;}
+.ethics_view .sec2 .sec_inner2 .practice_lst li{position:relative; padding:30px 0 10px; border-bottom:1px solid #606060; font-family:'AritaBuriM'; font-size:15px; text-align:left; line-height:23px;}
+.ethics_view .sec2 .sec_inner2 .practice_lst li:before{position:absolute; left:0; top:30px; width:48px; font-family:'Exo'; font-size:49px; text-align:center; line-height:1; color:#606060;}
+.ethics_view .sec2 .sec_inner2 .practice_lst li h3{padding-bottom:10px; font-size:16px; font-family:'NanumSquare', Dotum, '굴림', Gulim, Helvetica, sans-serif;}
+
+.ethics_view .sec2 .sec_inner3{margin-top:-126px; background:url(/resource/mobile/images/sustainability/ethics/view_sec2_bg1.jpg) center 0 no-repeat; background-size:cover;}
+.ethics_view .sec2 .sec_inner3 .inner{padding:125px 6.6666% 50px; margin:0 auto;}
+.ethics_view .sec2 .sec_inner3 h3{margin-bottom:-10px; font-family:'Exo'; font-size:20px; font-weight:400; line-height:1; color:#606060;}
+.ethics_view .sec2 .sec_inner3 .slide_cont{min-height:120px;}
+.ethics_view .sec2 .sec_inner3 .slide_cont dt{color:#606060;}
+.ethics_view .sec2 .sec_inner3 .slide_cont dd{color:#606060;}
 
 .ethics_view .sec3{padding:0 6.6666%;}
 .ethics_view .sec3 .sec_inner1{margin-bottom:40px;}
 .ethics_view .sec3 .sec_inner1 .sec_txt{}
-.ethics_view .sec3 .sec_inner2 .cont{position:absolute; left:0; top:0; position:relative; padding-top:150%; background:url(/resource/mobile/images/sustainability/ethics/view_sec3_bg1.jpg) center 0 no-repeat; background-size:cover;}
-.ethics_view .sec3 .sec_inner2 h2{position:absolute; left:6.6666%; top:5%; font-family:'Exo'; font-size:12px; font-weight:400; line-height:21px; letter-spacing:6px; color:#b4814f;}
-.ethics_view .sec3 .sec_inner2 .motion{position:absolute; left:0; bottom:0; padding: 5% 9.6% 15%; text-align:right;}
+.ethics_view .sec3 .sec_inner2 {position:absolute; left:0; top:0; position:relative; padding-top:100%; background:url(/resource/mobile/images/sustainability/ethics/view_sec3_bg1.jpg) center 0 no-repeat; background-size:cover;}
 .ethics_view .sec3 .sec_inner2 h3{margin-bottom:20px; font-family:'Exo'; font-size:20px; font-weight:400; line-height:1; color:#7c7c7c;}
 .ethics_view .sec3 .sec_inner2 .txt1{font-family:'AritaBuriM'; font-size:15px; line-height:25px; color:#7c7c7c;}
-.ethics_view .sec3 .sec_inner2{margin-bottom:50px;}
+.ethics_view .sec3 .sec_inner2{margin-bottom:40px;}
+
+.ethics_view .sec3 .sec_inner3 .sec_txt{height:220px; background-color:#F7F7F7; margin-top:40px; margin-bottom:10px;}
+.ethics_view .sec3 .sec_inner3 .sec_txt .txt1{margin-bottom:20px; padding-top:28px;text-align:center;}
+.ethics_view .sec3 .sec_inner3 .sec_txt .txt2{text-align:left;}
+.ethics_view .sec3 .sec_inner3 .sec_txt .txt1:after{content:""; position:absolute; left:50%; bottom:455px; width:35px; height:2px; margin-left:-17.5px; background:#b01a1d;}
+
+.ethics_view .sec3 .sec_inner3 .sec_txt2{height:290px; background-color:#F7F7F7;}
+.ethics_view .sec3 .sec_inner3 .sec_txt2 .txt1{margin-bottom:20px; padding-top:28px;text-align:center;}
+.ethics_view .sec3 .sec_inner3 .sec_txt2 .txt2{text-align:left;}
+.ethics_view .sec3 .sec_inner3 .sec_txt2 .txt1:after{content:""; position:absolute; left:50%; bottom:225px; width:35px; height:2px; margin-left:-17.5px; background:#b01a1d;}
+
 .ethics_view .sec3 .btn_area{text-align:center;}
+.ethics_view .sec3 .btn_area a{display:inline-block; line-height:58px; background-color:#b01a1d; color:#ffffff; width:50%;}
 
 /* partnership */
 .partnership_view #container #contents{padding-bottom:0;}

@@ -201,7 +201,7 @@
 						<div class="inner_top">
 							<div class="tab_wrap">
 								<a href="#" class="on">그룹소개</a>
-								<a href="#">윤리경영</a>
+								<a href="#">윤리준법경영</a>
 								<a href="#">상생경영</a>
 								<a href="#">환경경영</a>
 								<a href="#">사회공헌</a>
@@ -340,8 +340,8 @@
 											<div class="bg"><img src="/resource/images/main/value2_2.jpg" alt=""></div>
 										</div>
 										<div class="btn_wrap">
-											<a href="/sustainability/ethics.do" class="common_btn type02">
-												<span>윤리경영 바로가기</span>
+											<a href="/sustainability/ethics/list.do" class="common_btn type02">
+												<span>윤리준법경영 바로가기</span>
 											</a>
 										</div>
 									</li>
@@ -364,7 +364,7 @@
 											<div class="bg"><img src="/resource/images/main/value3_2.jpg" alt=""></div>
 										</div>
 										<div class="btn_wrap">
-											<a href="/sustainability/partnership.do" class="common_btn type02">
+											<a href="/sustainability/partnership/list.do" class="common_btn type02">
 												<span>상생경영 바로가기</span>
 											</a>
 										</div>
@@ -386,7 +386,7 @@
 											<div class="bg"><img src="/resource/images/main/value4_2.jpg" alt=""></div>
 										</div>
 										<div class="btn_wrap">
-											<a href="/sustainability/environment.do" class="common_btn type02">
+											<a href="/sustainability/environment/list.do" class="common_btn type02">
 												<span>환경경영 바로가기</span>
 											</a>
 										</div>
@@ -409,7 +409,7 @@
 										</div>
 										<div class="btn_wrap">
 											<div class="bg"></div>
-											<a href="/sustainability/social-contribution.do" class="common_btn type02">
+											<a href="/sustainability/social-contribution/list.do" class="common_btn type02">
 												<span>사회공헌 바로가기</span>
 											</a>
 										</div>
