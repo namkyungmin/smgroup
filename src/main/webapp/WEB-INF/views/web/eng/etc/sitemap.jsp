@@ -191,9 +191,6 @@
                                             <a href="/eng/business/view.do?IDX=60">TOPS 10 VILLA DE AEWOL JEJU</a>
                                         </li>
                                         <li class="depth3">
-                                            <a href="/eng/business/view.do?IDX=61">TOPS 10 OXFIELD C.C</a>
-                                        </li>
-                                        <li class="depth3">
                                             <a href="/eng/business/view.do?IDX=62">TOPS 10 APPLE VALLEY C.C</a>
                                         </li>
                                     </ul>

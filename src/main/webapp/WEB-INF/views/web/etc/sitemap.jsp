@@ -201,9 +201,6 @@
                                                         <a href="/business/view.do?IDX=60">· 탑스텐 빌라드애월 제주</a>
                                                     </li>
                                                     <li class="depth3">
-                                                        <a href="/business/view.do?IDX=61">· 탑스텐 옥스필드 C.C</a>
-                                                    </li>
-                                                    <li class="depth3">
                                                         <a href="/business/view.do?IDX=62">· 탑스텐 애플밸리 C.C</a>
                                                     </li>
                                                 </ul>
